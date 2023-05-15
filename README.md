@@ -10,10 +10,10 @@
 
 ### ユーザーが抱える課題
 
--  優柔不断で物事を決めるのに時間がかかってしまう。
+優柔不断で物事を決めるのに時間がかかってしまう。
 
 ### 解決方法
-- このサービスを通じて、悩む時間を減らして、QOLを上げる。
+このサービスを通じて、悩む時間を減らして、QOLを上げる。
 
 ### デザイン
 [Figma](https://www.figma.com/file/QnpwiOabYFqNd8Aaufy9hC/LostSheep?type=design&node-id=0%3A1&t=1Mzi6iHxKXICVYho-1)
