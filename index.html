@@ -3,20 +3,44 @@
   <head>
     <title>LostSheep</title>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="src/styles.css">
   </head>
   <body>
     <header>
       <h2>Lost Sheep</h2>
     </header>
-    <p>ルーレット部分</p>
-    <input type="text" autocomplete="off">
-    <button>追加</button>
-    <button>スタート</button>
-    <button>ストップ</button>
-    <ul>
-      <li>マクドナルド</li>
-      <button>編集</button>
-      <button>削除</button>
-    </ul>
+    <div class="container">
+      <p class="roullet">ルーレット部分</p>
+      <div class="contents">
+        <div class="input-area">
+          <div class="input-text">
+            <input type="text" autocomplete="off">
+          </div>
+          <div class="input-button">
+            <button class="add-button">追加</button>
+            <button class="start-button">スタート</button>
+            <button class="stop-button">ストップ</button>
+          </div>
+        </div>
+        <div class="items">
+          <div class="item">
+            <div class="paint"></div>
+            <p class="item-name">マクドナルド</p>
+            <div class="item-button">
+              <button class="edit-button">編集</button>
+              <button class="delete-button">削除</button>  
+            </div>
+          </div>
+          <div class="item">
+            <div class="paint"></div>
+            <p class="item-name">マクドナルド</p>
+            <div class="item-button">
+              <button class="edit-button">編集</button>
+              <button class="delete-button">削除</button>  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
