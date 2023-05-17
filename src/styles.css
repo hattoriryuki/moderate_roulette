@@ -20,12 +20,9 @@ h2 {
   gap: 10px;
 }
 
-.roullet {
-  border: 2px solid;
-  width: 500px;
-  height: 500px;
+canvas {
+  background-color: gray;
   margin: 10px auto;
-  border-radius: 50%;
   text-align: center;
   line-height: 500px;
 }
