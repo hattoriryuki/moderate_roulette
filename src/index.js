@@ -39,5 +39,16 @@ function drawRoullet(offset) {
     sum_deg += deg_count;
   });
 }
-drawRoullet(0);
 
+function drawTriangle() {
+  ctx.beginPath();
+  ctx.moveTo(0, -radius);
+  ctx.lineTo(-8, -(radius + 20));
+  ctx.lineTo(8, -(radius + 20));
+  ctx.closePath();
+  ctx.fillStyle = "#FF4D4D";
+  ctx.fill();
+}
+
+drawRoullet(0);
+drawTriangle();
