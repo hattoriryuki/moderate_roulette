@@ -3,6 +3,7 @@ let ctx = canvas.getContext("2d");
 let radius = 220;
 let angle = 0;
 let deg_count = 90;
+let startFlg = false;
 let data = [
   {
     name: "赤色",
@@ -22,7 +23,12 @@ let data = [
   }
 ];
 
+const startButton = document.getElementById("startButton");
+
 ctx.translate(canvas.width / 2, canvas.height / 2);
+
+drawRoullet(0);
+drawTriangle();
 
 function drawRoullet(offset) {
   let sum_deg = 0;
@@ -50,5 +56,19 @@ function drawTriangle() {
   ctx.fill();
 }
 
-drawRoullet(0);
-drawTriangle();
+function runRoullet() {
+  let deg_counter = 0;
+  let timer = setInterval(function () {
+    deg_counter += 26;
+    drawRoullet(deg_counter);
+  }, 10);
+}
+
+startButton.addEventListener("click", () => {
+  if (startFlg === false) {
+    runRoullet();
+    startFlg = true;
+  } else {
+    startFlg = false;
+  }
+});
