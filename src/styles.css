@@ -111,7 +111,7 @@ canvas {
   width: 70%;
 }
 
-.items button {
+.item > button {
   width: 4em;
   height: 30px;
   border: none;

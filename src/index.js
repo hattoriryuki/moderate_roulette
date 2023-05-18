@@ -86,7 +86,7 @@ function onClickAdd() {
   createItemList(text);
 }
 
-function createItemList(text){
+const createItemList = (text) => {
   const div = document.createElement("div");
   div.className = "item";
 
@@ -96,9 +96,6 @@ function createItemList(text){
   const p = document.createElement("p");
   p.innerText = text;
   p.className = "item-name";
-
-  const divChild = document.createElement("div");
-  divChild.className = "item-button";
 
   const editButton = document.createElement("button");
   editButton.innerText = "編集";
@@ -110,9 +107,8 @@ function createItemList(text){
 
   div.appendChild(paint);
   div.appendChild(p);
-  divChild.appendChild(editButton);
-  divChild.appendChild(deleteButton);
-  div.appendChild(divChild);
+  div.appendChild(editButton);
+  div.appendChild(deleteButton);
   document.getElementById("inputItems").appendChild(div);
 }
 
