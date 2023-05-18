@@ -128,5 +128,9 @@ stopButton.addEventListener("click", () => {
 });
 
 addButton.addEventListener("click", () => {
-  onClickAdd();
+  if(inputText.value){
+    onClickAdd();
+  } else {
+    alert("何か入力してください");
+  }
 });
