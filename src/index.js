@@ -4,6 +4,7 @@ let radius = 220;
 let angle = 0;
 let deg_count = 90;
 let startFlg = false;
+let stopFlg = false;
 let data = [
   {
     name: "赤色",
@@ -24,6 +25,7 @@ let data = [
 ];
 
 const startButton = document.getElementById("startButton");
+const stopButton = document.getElementById("stopButton");
 
 ctx.translate(canvas.width / 2, canvas.height / 2);
 
@@ -60,7 +62,13 @@ function runRoullet() {
   let deg_counter = 0;
   let timer = setInterval(function () {
     deg_counter += 26;
-    drawRoullet(deg_counter);
+    if (stopFlg) {
+      clearInterval(timer);
+      startFlg = false;
+      stopFlg = false;
+    } else{
+      drawRoullet(deg_counter);
+    }
   }, 10);
 }
 
@@ -70,5 +78,11 @@ startButton.addEventListener("click", () => {
     startFlg = true;
   } else {
     startFlg = false;
+  }
+});
+
+stopButton.addEventListener("click", () => {
+  if(startFlg){
+    stopFlg = true;
   }
 });
