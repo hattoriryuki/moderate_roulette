@@ -5,6 +5,7 @@ let angle = 0;
 let deg_count = 90;
 let startFlg = false;
 let stopFlg = false;
+let itemCount = 0;
 let data = [
   {
     name: "赤色",
@@ -83,15 +84,23 @@ function runRoullet() {
 function onClickAdd() {
   const text = inputText.value;
   inputText.value = "";
-  createItemList(text);
+  console.log(itemCount);
+  let color = data[itemCount].color;
+  if(itemCount < 3){
+    itemCount++;
+  } else {
+    itemCount = 0;
+  }
+  createItemList(text, color);
 }
 
-const createItemList = (text) => {
+function createItemList(text, color) {
   const div = document.createElement("div");
   div.className = "item";
 
   const paint = document.createElement("div");
   paint.className = "paint";
+  paint.style = `background-color: ${color};`;
 
   const p = document.createElement("p");
   p.innerText = text;
