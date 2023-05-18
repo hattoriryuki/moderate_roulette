@@ -60,14 +60,20 @@ function drawTriangle() {
 
 function runRoullet() {
   let deg_counter = 0;
+  let count = 0;
   let timer = setInterval(function () {
     deg_counter += 26;
-    if (stopFlg) {
+    if(stopFlg) {
+      count++;
+    }
+    if (count < 200) {
+      deg_counter -= count / 8;
+      drawRoullet(deg_counter);
+    } else {
+      count = 0;
       clearInterval(timer);
       startFlg = false;
       stopFlg = false;
-    } else{
-      drawRoullet(deg_counter);
     }
   }, 10);
 }
