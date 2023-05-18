@@ -10,7 +10,9 @@
       <h2>Lost Sheep</h2>
     </header>
     <div class="container">
-      <p class="roullet">ルーレット部分</p>
+      <canvas id="canvas" width="500" height="500">
+        Canvas not supported.
+      </canvas>
       <div class="contents">
         <div class="input-area">
           <div class="input-text">
@@ -18,8 +20,8 @@
           </div>
           <div class="input-button">
             <button class="add-button">追加</button>
-            <button class="start-button">スタート</button>
-            <button class="stop-button">ストップ</button>
+            <button class="start-button" id="startButton">スタート</button>
+            <button class="stop-button" id="stopButton">ストップ</button>
           </div>
         </div>
         <div class="items">
@@ -42,5 +44,6 @@
         </div>
       </div>
     </div>
+    <script src="src/index.js"></script>
   </body>
 </html>
