@@ -100,7 +100,6 @@ canvas {
 }
 
 .paint {
-  background-color: red;
   width: 16px;
   height: 16px;
   border-radius: 50%;
@@ -111,7 +110,7 @@ canvas {
   width: 70%;
 }
 
-.items button {
+.item > button {
   width: 4em;
   height: 30px;
   border: none;

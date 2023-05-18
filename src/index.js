@@ -5,6 +5,7 @@ let angle = 0;
 let deg_count = 90;
 let startFlg = false;
 let stopFlg = false;
+let itemCount = 0;
 let data = [
   {
     name: "赤色",
@@ -26,6 +27,8 @@ let data = [
 
 const startButton = document.getElementById("startButton");
 const stopButton = document.getElementById("stopButton");
+const addButton = document.getElementById("addButton");
+const inputText = document.getElementById("inputText");
 
 ctx.translate(canvas.width / 2, canvas.height / 2);
 
@@ -78,6 +81,46 @@ function runRoullet() {
   }, 10);
 }
 
+function onClickAdd() {
+  const text = inputText.value;
+  inputText.value = "";
+  console.log(itemCount);
+  let color = data[itemCount].color;
+  if(itemCount < 3){
+    itemCount++;
+  } else {
+    itemCount = 0;
+  }
+  createItemList(text, color);
+}
+
+function createItemList(text, color) {
+  const div = document.createElement("div");
+  div.className = "item";
+
+  const paint = document.createElement("div");
+  paint.className = "paint";
+  paint.style = `background-color: ${color};`;
+
+  const p = document.createElement("p");
+  p.innerText = text;
+  p.className = "item-name";
+
+  const editButton = document.createElement("button");
+  editButton.innerText = "編集";
+  editButton.className = "edit-button";
+
+  const deleteButton = document.createElement("button");
+  deleteButton.innerText = "削除";
+  deleteButton.className = "delete-button";
+
+  div.appendChild(paint);
+  div.appendChild(p);
+  div.appendChild(editButton);
+  div.appendChild(deleteButton);
+  document.getElementById("inputItems").appendChild(div);
+}
+
 startButton.addEventListener("click", () => {
   if (startFlg === false) {
     runRoullet();
@@ -90,5 +133,13 @@ startButton.addEventListener("click", () => {
 stopButton.addEventListener("click", () => {
   if(startFlg){
     stopFlg = true;
+  }
+});
+
+addButton.addEventListener("click", () => {
+  if(inputText.value){
+    onClickAdd();
+  } else {
+    alert("何か入力してください");
   }
 });
