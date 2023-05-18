@@ -106,8 +106,34 @@ function createItemList(text, color) {
   p.className = "item-name";
 
   const editButton = document.createElement("button");
+  let editFlg = 0;
   editButton.innerText = "編集";
   editButton.className = "edit-button";
+  editButton.addEventListener("click", () => {
+    const editItem = editButton.parentNode;
+    const editTarget = editItem.children[1];
+    if (editFlg === 0) {
+      editFlg = 1;
+      editButton.innerText = "決定";
+      const input = document.createElement("input");
+      input.type = "text";
+      input.value = editTarget.innerText;
+      input.className = "item-name";
+      editTarget.hidden = true;
+      editItem.insertBefore(input, editButton);
+    } else {
+      const editedText = editItem.children[2].value;
+      if (editedText === "") {
+        alert("未入力の項目があります");
+      } else {
+        editFlg = 0;
+        editButton.innerText = "編集";
+        editItem.children[2].remove();
+        editTarget.hidden = false;
+        editTarget.innerText = editedText;
+      }
+    }
+  });
 
   const deleteButton = document.createElement("button");
   deleteButton.innerText = "削除";
@@ -120,6 +146,7 @@ function createItemList(text, color) {
   div.appendChild(p);
   div.appendChild(editButton);
   div.appendChild(deleteButton);
+
   document.getElementById("inputItems").appendChild(div);
 }
 
