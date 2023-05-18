@@ -84,7 +84,6 @@ function runRoullet() {
 function onClickAdd() {
   const text = inputText.value;
   inputText.value = "";
-  console.log(itemCount);
   let color = data[itemCount].color;
   if(itemCount < 3){
     itemCount++;
@@ -113,7 +112,10 @@ function createItemList(text, color) {
   const deleteButton = document.createElement("button");
   deleteButton.innerText = "削除";
   deleteButton.className = "delete-button";
-
+  deleteButton.addEventListener("click", () => {
+    const deleteTarget = deleteButton.parentNode;
+    document.getElementById("inputItems").removeChild(deleteTarget);
+  });
   div.appendChild(paint);
   div.appendChild(p);
   div.appendChild(editButton);
