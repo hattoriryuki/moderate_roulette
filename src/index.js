@@ -26,6 +26,8 @@ let data = [
 
 const startButton = document.getElementById("startButton");
 const stopButton = document.getElementById("stopButton");
+const addButton = document.getElementById("addButton");
+const inputText = document.getElementById("inputText");
 
 ctx.translate(canvas.width / 2, canvas.height / 2);
 
@@ -78,6 +80,42 @@ function runRoullet() {
   }, 10);
 }
 
+function onClickAdd() {
+  const text = inputText.value;
+  inputText.value = "";
+  createItemList(text);
+}
+
+function createItemList(text){
+  const div = document.createElement("div");
+  div.className = "item";
+
+  const paint = document.createElement("div");
+  paint.className = "paint";
+
+  const p = document.createElement("p");
+  p.innerText = text;
+  p.className = "item-name";
+
+  const divChild = document.createElement("div");
+  divChild.className = "item-button";
+
+  const editButton = document.createElement("button");
+  editButton.innerText = "編集";
+  editButton.className = "edit-button";
+
+  const deleteButton = document.createElement("button");
+  deleteButton.innerText = "削除";
+  deleteButton.className = "delete-button";
+
+  div.appendChild(paint);
+  div.appendChild(p);
+  divChild.appendChild(editButton);
+  divChild.appendChild(deleteButton);
+  div.appendChild(divChild);
+  document.getElementById("inputItems").appendChild(div);
+}
+
 startButton.addEventListener("click", () => {
   if (startFlg === false) {
     runRoullet();
@@ -91,4 +129,8 @@ stopButton.addEventListener("click", () => {
   if(startFlg){
     stopFlg = true;
   }
+});
+
+addButton.addEventListener("click", () => {
+  onClickAdd();
 });
