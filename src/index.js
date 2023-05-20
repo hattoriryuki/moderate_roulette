@@ -2,10 +2,10 @@ let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
 let radius = 220;
 let angle = 0;
-let deg_count = 90;
+let deg_count = 360;
 let startFlg = false;
 let stopFlg = false;
-let itemCount = 0;
+let itemCount = 1;
 let data = [
   {
     name: "赤色",
@@ -37,18 +37,21 @@ drawTriangle();
 
 function drawRoullet(offset) {
   let sum_deg = 0;
-  
-  data.forEach((e) => {
+  deg_count /= itemCount;
+  for (let i = 0; i <= itemCount; i++) {
     angle = sum_deg + offset;
     let start_deg = ((360 - angle) * Math.PI) / 180;
     let end_deg = ((360 - (angle + deg_count)) * Math.PI) / 180;
     ctx.beginPath();
     ctx.moveTo(0, 0);
-    ctx.fillStyle = e.color;
+    let color = data[1].color;
+    if(itemCount < 4)color = data[i].color;
+    ctx.fillStyle = color;
     ctx.arc(0, 0, radius, start_deg, end_deg, true);
     ctx.fill();
     sum_deg += deg_count;
-  });
+  }
+  deg_count = 360;
 }
 
 function drawTriangle() {
