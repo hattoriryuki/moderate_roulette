@@ -5,26 +5,10 @@ let angle = 0;
 let deg_count = 360;
 let startFlg = false;
 let stopFlg = false;
-let itemCount = 1;
+let addFlg = false;
+let itemCount = 0;
 let itemColor
-let data = [
-  {
-    name: "赤色",
-    color: "#FF597F"
-  },
-  {
-    name: "緑色",
-    color: "#8FFFBE"
-  },
-  {
-    name: "青色",
-    color: "#8EBEFF"
-  },
-  {
-    name: "黄色",
-    color: "#FDED75"
-  }
-];
+let data = ["#FF597F","#8FFFBE","#8EBEFF","#FDED75"];
 
 const startButton = document.getElementById("startButton");
 const stopButton = document.getElementById("stopButton");
@@ -38,6 +22,17 @@ drawTriangle();
 
 function drawRoullet(offset) {
   let sum_deg = 0;
+  if(addFlg === true){
+    addFlg = false;
+    itemCount++;
+  }
+  if(itemCount === 0){
+    ctx.beginPath();
+    ctx.arc(0, 0, radius,0 * Math.PI / 180, 360 * Math.PI / 180);
+    ctx.stroke();
+    ctx.font = '20px serif';
+    ctx.fillText('アイテムを入力してください', -radius / 2, 0);
+  }
   deg_count /= itemCount;
   for (let i = 0; i < itemCount; i++) {
     angle = sum_deg + offset;
@@ -45,11 +40,8 @@ function drawRoullet(offset) {
     let end_deg = ((360 - (angle + deg_count)) * Math.PI) / 180;
     ctx.beginPath();
     ctx.moveTo(0, 0);
-    if(i < 4) {
-      itemColor = data[i].color;
-    } else {
-      getColor();
-    }
+    if(i > 3)getColor();
+    itemColor = data[i];
     ctx.fillStyle = itemColor;
     ctx.arc(0, 0, radius, start_deg, end_deg, true);
     ctx.fill();
@@ -154,7 +146,7 @@ function createItemList(text, color) {
 
 function getColor(){
   let num = Math.floor(Math.random() * 4);
-  itemColor = data[num].color;
+  data.push(data[num]);
 }
 
 startButton.addEventListener("click", () => {
@@ -174,9 +166,9 @@ stopButton.addEventListener("click", () => {
 
 addButton.addEventListener("click", () => {
   if(inputText.value){
+    addFlg = true;
     drawRoullet(0);
     onClickAdd();
-    itemCount++;
   } else {
     alert("何か入力してください");
   }
