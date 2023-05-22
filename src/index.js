@@ -8,6 +8,7 @@ let stopFlg = false;
 let addFlg = false;
 let itemCount = 0;
 let itemColor
+let itemNum = 0;
 let data = ["#FF597F","#8FFFBE","#8EBEFF","#FDED75"];
 
 const startButton = document.getElementById("startButton");
@@ -27,11 +28,14 @@ function drawRoullet(offset) {
     itemCount++;
   }
   if(itemCount === 0){
+    ctx.clearRect(-canvas.width / 2, -canvas.height / 2, canvas.width, canvas.height);
     ctx.beginPath();
     ctx.arc(0, 0, radius,0 * Math.PI / 180, 360 * Math.PI / 180);
     ctx.stroke();
     ctx.font = '20px serif';
-    ctx.fillText('アイテムを入力してください', -radius / 2, 0);
+    ctx.fillStyle = 'black';
+    ctx.fillText('アイテムを入力してください', -radius / 2 -20, 0);
+    drawTriangle();
   }
   deg_count /= itemCount;
   for (let i = 0; i < itemCount; i++) {
@@ -89,7 +93,8 @@ function onClickAdd() {
 
 function createItemList(text, color) {
   const div = document.createElement("div");
-  div.className = "item";
+  itemNum++;
+  div.className = `item ${itemNum}`;
 
   const paint = document.createElement("div");
   paint.className = "paint";
@@ -134,7 +139,11 @@ function createItemList(text, color) {
   deleteButton.className = "delete-button";
   deleteButton.addEventListener("click", () => {
     const deleteTarget = deleteButton.parentNode;
+    let delElement = deleteTarget.classList.item(1);
+    data.splice(delElement -1, 1);
     document.getElementById("inputItems").removeChild(deleteTarget);
+    itemCount--;
+    drawRoullet(0);
   });
   div.appendChild(paint);
   div.appendChild(p);
