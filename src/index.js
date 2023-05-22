@@ -139,8 +139,7 @@ function createItemList(text, color) {
   deleteButton.className = "delete-button";
   deleteButton.addEventListener("click", () => {
     const deleteTarget = deleteButton.parentNode;
-    let delElement = deleteTarget.classList.item(1);
-    data.splice(delElement -1, 1);
+    data.splice(data.indexOf(color), 1);
     document.getElementById("inputItems").removeChild(deleteTarget);
     itemCount--;
     drawRoullet(0);
