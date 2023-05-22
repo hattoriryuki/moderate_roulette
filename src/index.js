@@ -9,7 +9,7 @@ let addFlg = false;
 let itemCount = 0;
 let itemColor
 let itemNum = 0;
-let data = ["#FF597F","#8FFFBE","#8EBEFF","#FDED75"];
+let data = [];
 
 const startButton = document.getElementById("startButton");
 const stopButton = document.getElementById("stopButton");
@@ -25,6 +25,7 @@ function drawRoullet(offset) {
   let sum_deg = 0;
   if(addFlg === true){
     addFlg = false;
+    getRandomColor();
     itemCount++;
   }
   if(itemCount === 0){
@@ -44,7 +45,6 @@ function drawRoullet(offset) {
     let end_deg = ((360 - (angle + deg_count)) * Math.PI) / 180;
     ctx.beginPath();
     ctx.moveTo(0, 0);
-    if(i > 3)getColor();
     itemColor = data[i];
     ctx.fillStyle = itemColor;
     ctx.arc(0, 0, radius, start_deg, end_deg, true);
@@ -98,7 +98,7 @@ function createItemList(text, color) {
 
   const paint = document.createElement("div");
   paint.className = "paint";
-  paint.style = `background-color: ${color};`;
+  paint.style.backgroundColor = color;
 
   const p = document.createElement("p");
   p.innerText = text;
@@ -153,9 +153,9 @@ function createItemList(text, color) {
   document.getElementById("inputItems").appendChild(div);
 }
 
-function getColor(){
-  let num = Math.floor(Math.random() * 4);
-  data.push(data[num]);
+function getRandomColor(){
+  let num = 360 * Math.random();
+  data.push(`hsl(${num}, 100%, 50%)`);
 }
 
 startButton.addEventListener("click", () => {
