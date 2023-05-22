@@ -168,9 +168,7 @@ startButton.addEventListener("click", () => {
 });
 
 stopButton.addEventListener("click", () => {
-  if(startFlg){
-    stopFlg = true;
-  }
+  if(startFlg)stopFlg = true;
 });
 
 addButton.addEventListener("click", () => {
