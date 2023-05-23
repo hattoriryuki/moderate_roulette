@@ -8,7 +8,6 @@ let stopFlg = false;
 let addFlg = false;
 let itemCount = 0;
 let itemColor
-let itemNum = 0;
 let data = [];
 
 const startButton = document.getElementById("startButton");
@@ -93,8 +92,7 @@ function onClickAdd() {
 
 function createItemList(text, color) {
   const div = document.createElement("div");
-  itemNum++;
-  div.className = `item ${itemNum}`;
+  div.className = "item";
 
   const paint = document.createElement("div");
   paint.className = "paint";
