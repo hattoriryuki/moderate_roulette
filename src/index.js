@@ -2,14 +2,14 @@ let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
 let radius = 220;
 let angle = 0;
-let deg_count = 360;
+let current_deg = 0;
+let deg_part = 0;
 let startFlg = false;
 let stopFlg = false;
 let addFlg = false;
 let itemCount = 0;
-let itemColor
+let itemColor;
 let data = [];
-
 const startButton = document.getElementById("startButton");
 const stopButton = document.getElementById("stopButton");
 const addButton = document.getElementById("addButton");
@@ -37,20 +37,20 @@ function drawRoullet(offset) {
     ctx.fillText('アイテムを入力してください', -radius / 2 -20, 0);
     drawTriangle();
   }
-  deg_count /= itemCount;
+  deg_part = 360 / itemCount;
   for (let i = 0; i < itemCount; i++) {
-    angle = sum_deg + offset;
-    let start_deg = ((360 - angle) * Math.PI) / 180;
-    let end_deg = ((360 - (angle + deg_count)) * Math.PI) / 180;
+    angle = sum_deg + offset + 90;
+    let start_deg = (360 - angle) * Math.PI / 180;
+    let end_deg = ((360 - (angle + deg_part)) * Math.PI) / 180;
     ctx.beginPath();
     ctx.moveTo(0, 0);
     itemColor = data[i];
     ctx.fillStyle = itemColor;
     ctx.arc(0, 0, radius, start_deg, end_deg, true);
     ctx.fill();
-    sum_deg += deg_count;
+    sum_deg += deg_part;
   }
-  deg_count = 360;
+  current_deg = offset % 360;
 }
 
 function drawTriangle() {
@@ -79,8 +79,24 @@ function runRoullet() {
       clearInterval(timer);
       startFlg = false;
       stopFlg = false;
+      endEvent();
     }
   }, 10);
+
+  const endEvent = function(){
+    let sum = 0;
+    let reversed = [...data].reverse();
+    for (let i = 0; i < data.length; i++) {
+      if (
+        deg_part * sum < current_deg &&
+        current_deg < deg_part * (sum + 1)
+      ) {
+        document.getElementById("debug").innerHTML = reversed[i];
+        break;
+      }
+      sum++;
+    }
+  }
 }
 
 function onClickAdd() {
@@ -157,6 +173,7 @@ function getRandomColor(){
 
 startButton.addEventListener("click", () => {
   if (startFlg === false) {
+    drawRoullet(0);
     runRoullet();
     startFlg = true;
   } else {
