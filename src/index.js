@@ -25,7 +25,6 @@ function drawRoullet(offset) {
   let sum_deg = 0;
   if(addFlg === true){
     addFlg = false;
-    getRandomColor();
     itemCount++;
   }
   if(itemCount === 0){
@@ -45,8 +44,7 @@ function drawRoullet(offset) {
     let end_deg = ((360 - (angle + deg_part)) * Math.PI) / 180;
     ctx.beginPath();
     ctx.moveTo(0, 0);
-    itemColor = data[i];
-    ctx.fillStyle = itemColor;
+    ctx.fillStyle = data[i].color;;
     ctx.arc(0, 0, radius, start_deg, end_deg, true);
     ctx.fill();
     sum_deg += deg_part;
@@ -87,18 +85,15 @@ function runRoullet() {
   const endEvent = function(){
     let sum = 0;
     let reversed = [...data].reverse();
-    let count = data.length;
     for (let i = 0; i < data.length; i++) {
       if (
         deg_part * sum < current_deg &&
         current_deg < deg_part * (sum + 1)
       ) {
-        let itemName = document.getElementsByClassName(`item-name ${count}`);
-        document.getElementById("debug").innerHTML = itemName.item(0).innerHTML;
+        document.getElementById("debug").innerHTML = reversed[i].name;
         break;
       }
       sum++;
-      count--;
     }
   }
 }
@@ -107,6 +102,7 @@ function onClickAdd() {
   const text = inputText.value;
   inputText.value = "";
   let color = itemColor;
+  data.push({name: text, color: color});
   createItemList(text, color);
 }
 
@@ -157,7 +153,8 @@ function createItemList(text, color) {
   deleteButton.className = "delete-button";
   deleteButton.addEventListener("click", () => {
     const deleteTarget = deleteButton.parentNode;
-    data.splice(data.indexOf(color), 1);
+    let index = data.findIndex(e => e.color === color);
+    data.splice(index, 1);
     document.getElementById("inputItems").removeChild(deleteTarget);
     itemCount--;
     drawRoullet(0);
@@ -172,7 +169,7 @@ function createItemList(text, color) {
 
 function getRandomColor(){
   let num = 360 * Math.random();
-  data.push(`hsl(${num}, 100%, 50%)`);
+  itemColor = `hsl(${num}, 100%, 50%)`;
 }
 
 startButton.addEventListener("click", () => {
@@ -192,8 +189,9 @@ stopButton.addEventListener("click", () => {
 addButton.addEventListener("click", () => {
   if(inputText.value){
     addFlg = true;
-    drawRoullet(0);
+    getRandomColor();
     onClickAdd();
+    drawRoullet(0);
   } else {
     alert("何か入力してください");
   }
