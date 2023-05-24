@@ -9,6 +9,7 @@ let stopFlg = false;
 let addFlg = false;
 let itemCount = 0;
 let itemColor;
+let itemNum = 0;
 let data = [];
 const startButton = document.getElementById("startButton");
 const stopButton = document.getElementById("stopButton");
@@ -86,15 +87,18 @@ function runRoullet() {
   const endEvent = function(){
     let sum = 0;
     let reversed = [...data].reverse();
+    let count = data.length;
     for (let i = 0; i < data.length; i++) {
       if (
         deg_part * sum < current_deg &&
         current_deg < deg_part * (sum + 1)
       ) {
-        document.getElementById("debug").innerHTML = reversed[i];
+        let itemName = document.getElementsByClassName(`item-name ${count}`);
+        document.getElementById("debug").innerHTML = itemName.item(0).innerHTML;
         break;
       }
       sum++;
+      count--;
     }
   }
 }
@@ -107,6 +111,7 @@ function onClickAdd() {
 }
 
 function createItemList(text, color) {
+  itemNum++;
   const div = document.createElement("div");
   div.className = "item";
 
@@ -116,8 +121,7 @@ function createItemList(text, color) {
 
   const p = document.createElement("p");
   p.innerText = text;
-  p.className = "item-name";
-
+  p.className = `item-name ${itemNum}`;
   const editButton = document.createElement("button");
   let editFlg = 0;
   editButton.innerText = "編集";
