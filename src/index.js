@@ -9,7 +9,6 @@ let stopFlg = false;
 let addFlg = false;
 let itemCount = 0;
 let itemColor;
-let itemNum = 0;
 let data = [];
 const startButton = document.getElementById("startButton");
 const stopButton = document.getElementById("stopButton");
@@ -44,7 +43,7 @@ function drawRoullet(offset) {
     let end_deg = ((360 - (angle + deg_part)) * Math.PI) / 180;
     ctx.beginPath();
     ctx.moveTo(0, 0);
-    ctx.fillStyle = data[i].color;;
+    ctx.fillStyle = data[i].color;
     ctx.arc(0, 0, radius, start_deg, end_deg, true);
     ctx.fill();
     sum_deg += deg_part;
@@ -100,14 +99,19 @@ function runRoullet() {
 
 function onClickAdd() {
   const text = inputText.value;
-  inputText.value = "";
   let color = itemColor;
-  data.push({name: text, color: color});
-  createItemList(text, color);
+  let judge = data.some(e => e.name === text);
+  if(judge){
+    alert("同じアイテムは登録できません");
+  } else {
+    data.push({name: text, color: color});
+    inputText.value = "";
+    createItemList(text, color);
+    drawRoullet(0);
+  }
 }
 
 function createItemList(text, color) {
-  itemNum++;
   const div = document.createElement("div");
   div.className = "item";
 
@@ -117,7 +121,7 @@ function createItemList(text, color) {
 
   const p = document.createElement("p");
   p.innerText = text;
-  p.className = `item-name ${itemNum}`;
+  p.className = "item-name";
   const editButton = document.createElement("button");
   let editFlg = 0;
   editButton.innerText = "編集";
@@ -143,6 +147,8 @@ function createItemList(text, color) {
         editButton.innerText = "編集";
         editItem.children[2].remove();
         editTarget.hidden = false;
+        let index = data.findIndex(e => e.name === editTarget.innerText);
+        data[index].name = editedText;
         editTarget.innerText = editedText;
       }
     }
@@ -191,7 +197,6 @@ addButton.addEventListener("click", () => {
     addFlg = true;
     getRandomColor();
     onClickAdd();
-    drawRoullet(0);
   } else {
     alert("何か入力してください");
   }
