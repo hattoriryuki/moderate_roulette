@@ -84,16 +84,20 @@ function runRoullet() {
   const endEvent = function(){
     let sum = 0;
     let reversed = [...data].reverse();
+    let color;
+    let text;
     for (let i = 0; i < data.length; i++) {
       if (
         deg_part * sum < current_deg &&
         current_deg < deg_part * (sum + 1)
       ) {
-        document.getElementById("debug").innerHTML = reversed[i].name;
+        color = reversed[i].color;
+        text = reversed[i].name;
         break;
       }
       sum++;
     }
+    setTimeout(() => openModal(color, text), 1000);
   }
 }
 
@@ -176,6 +180,22 @@ function createItemList(text, color) {
 function getRandomColor(){
   let num = 360 * Math.random();
   itemColor = `hsl(${num}, 100%, 50%)`;
+}
+
+function openModal(color, text){
+  const modalContents = document.getElementById("modalContents");
+  const modalClose = document.getElementById("modalClose");
+  const resultColor = document.getElementById("resultColor");
+  const resultText = document.getElementById("resultText");
+
+  resultColor.style.backgroundColor = color;
+  resultText.innerHTML = text;
+
+  modalContents.className = "modal open";
+
+  modalClose.addEventListener("click", () => {
+    modalContents.className = "modal";
+  });
 }
 
 startButton.addEventListener("click", () => {
