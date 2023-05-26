@@ -2,14 +2,14 @@ let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
 let radius = 220;
 let angle = 0;
-let deg_count = 360;
+let current_deg = 0;
+let deg_part = 0;
 let startFlg = false;
 let stopFlg = false;
 let addFlg = false;
 let itemCount = 0;
-let itemColor
+let itemColor;
 let data = [];
-
 const startButton = document.getElementById("startButton");
 const stopButton = document.getElementById("stopButton");
 const addButton = document.getElementById("addButton");
@@ -24,7 +24,6 @@ function drawRoullet(offset) {
   let sum_deg = 0;
   if(addFlg === true){
     addFlg = false;
-    getRandomColor();
     itemCount++;
   }
   if(itemCount === 0){
@@ -37,20 +36,19 @@ function drawRoullet(offset) {
     ctx.fillText('アイテムを入力してください', -radius / 2 -20, 0);
     drawTriangle();
   }
-  deg_count /= itemCount;
+  deg_part = 360 / itemCount;
   for (let i = 0; i < itemCount; i++) {
-    angle = sum_deg + offset;
-    let start_deg = ((360 - angle) * Math.PI) / 180;
-    let end_deg = ((360 - (angle + deg_count)) * Math.PI) / 180;
+    angle = sum_deg + offset + 90;
+    let start_deg = (360 - angle) * Math.PI / 180;
+    let end_deg = ((360 - (angle + deg_part)) * Math.PI) / 180;
     ctx.beginPath();
     ctx.moveTo(0, 0);
-    itemColor = data[i];
-    ctx.fillStyle = itemColor;
+    ctx.fillStyle = data[i].color;
     ctx.arc(0, 0, radius, start_deg, end_deg, true);
     ctx.fill();
-    sum_deg += deg_count;
+    sum_deg += deg_part;
   }
-  deg_count = 360;
+  current_deg = offset % 360;
 }
 
 function drawTriangle() {
@@ -79,15 +77,42 @@ function runRoullet() {
       clearInterval(timer);
       startFlg = false;
       stopFlg = false;
+      endEvent();
     }
   }, 10);
+
+  const endEvent = function(){
+    let sum = 0;
+    let reversed = [...data].reverse();
+    let color;
+    let text;
+    for (let i = 0; i < data.length; i++) {
+      if (
+        deg_part * sum < current_deg &&
+        current_deg < deg_part * (sum + 1)
+      ) {
+        color = reversed[i].color;
+        text = reversed[i].name;
+        break;
+      }
+      sum++;
+    }
+    setTimeout(() => modalOpen(color, text), 1000);
+  }
 }
 
 function onClickAdd() {
   const text = inputText.value;
-  inputText.value = "";
   let color = itemColor;
-  createItemList(text, color);
+  let judge = data.some(e => e.name === text);
+  if(judge){
+    alert("同じアイテムは登録できません");
+  } else {
+    data.push({name: text, color: color});
+    inputText.value = "";
+    createItemList(text, color);
+    drawRoullet(0);
+  }
 }
 
 function createItemList(text, color) {
@@ -101,7 +126,6 @@ function createItemList(text, color) {
   const p = document.createElement("p");
   p.innerText = text;
   p.className = "item-name";
-
   const editButton = document.createElement("button");
   let editFlg = 0;
   editButton.innerText = "編集";
@@ -127,6 +151,8 @@ function createItemList(text, color) {
         editButton.innerText = "編集";
         editItem.children[2].remove();
         editTarget.hidden = false;
+        let index = data.findIndex(e => e.name === editTarget.innerText);
+        data[index].name = editedText;
         editTarget.innerText = editedText;
       }
     }
@@ -137,7 +163,8 @@ function createItemList(text, color) {
   deleteButton.className = "delete-button";
   deleteButton.addEventListener("click", () => {
     const deleteTarget = deleteButton.parentNode;
-    data.splice(data.indexOf(color), 1);
+    let index = data.findIndex(e => e.color === color);
+    data.splice(index, 1);
     document.getElementById("inputItems").removeChild(deleteTarget);
     itemCount--;
     drawRoullet(0);
@@ -152,11 +179,34 @@ function createItemList(text, color) {
 
 function getRandomColor(){
   let num = 360 * Math.random();
-  data.push(`hsl(${num}, 100%, 50%)`);
+  itemColor = `hsl(${num}, 100%, 50%)`;
+}
+
+function modalOpen(color, text){
+  const modalMask = document.getElementById("modalMask");
+  const modalContent = document.getElementById("modalContent");
+  const modalClose = document.getElementById("modalClose");
+  const resultColor = document.getElementById("resultColor");
+  const resultText = document.getElementById("resultText");
+
+  function modalEndEvent(){
+    modalMask.className = "mask";
+    modalContent.style.zIndex = -1;
+    modalContent.style.display = "none";
+  }
+
+  resultColor.style.backgroundColor = color;
+  resultText.innerHTML = text;
+  modalMask.className = "mask open";
+  modalContent.style.zIndex = 2;
+  modalContent.style.display = "block";
+  modalMask.addEventListener("click", () => modalEndEvent());
+  modalClose.addEventListener("click", () => modalEndEvent());
 }
 
 startButton.addEventListener("click", () => {
   if (startFlg === false) {
+    drawRoullet(0);
     runRoullet();
     startFlg = true;
   } else {
@@ -171,7 +221,7 @@ stopButton.addEventListener("click", () => {
 addButton.addEventListener("click", () => {
   if(inputText.value){
     addFlg = true;
-    drawRoullet(0);
+    getRandomColor();
     onClickAdd();
   } else {
     alert("何か入力してください");
