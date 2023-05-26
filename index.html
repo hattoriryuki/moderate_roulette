@@ -9,7 +9,7 @@
     <header>
       <h2>Lost Sheep</h2>
     </header>
-    <div class="container">
+    <div class="container" id="container">
       <canvas id="canvas" width="500" height="500">
         Canvas not supported.
       </canvas>
@@ -28,21 +28,19 @@
         </div>
       </div>
     </div>
-    <div id="debug"></div>
-    <div class="modal" id="modalContents">
-      <div class="modal-content">
-        <div class="modal-header">
-          <p>結果</p>
-          <button class="modal-close" id="modalClose">x</button>  
-        </div>
-        <p>選ばれたのは...</p>
-        <div class="result">
-          <div class="result-color" id="resultColor"></div>
-          <div class="result-text" id="resultText"></div>  
-        </div>
-        <p>です</p>
+    <div class="mask" id="modalMask"></div>
+    <div class="modal-content" id="modalContent">
+      <div class="modal-header">
+        <p>結果</p>
+        <button class="modal-close" id="modalClose">x</button>  
       </div>
-    </div> 
+      <p>選ばれたのは...</p>
+      <div class="result">
+        <div class="result-color" id="resultColor"></div>
+        <div class="result-text" id="resultText"></div>  
+      </div>
+      <p>です</p>
+    </div>
     <script src="src/index.js"></script>
   </body>
 </html>

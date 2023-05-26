@@ -97,7 +97,7 @@ function runRoullet() {
       }
       sum++;
     }
-    setTimeout(() => openModal(color, text), 1000);
+    setTimeout(() => modalOpen(color, text), 1000);
   }
 }
 
@@ -182,20 +182,26 @@ function getRandomColor(){
   itemColor = `hsl(${num}, 100%, 50%)`;
 }
 
-function openModal(color, text){
-  const modalContents = document.getElementById("modalContents");
+function modalOpen(color, text){
+  const modalMask = document.getElementById("modalMask");
+  const modalContent = document.getElementById("modalContent");
   const modalClose = document.getElementById("modalClose");
   const resultColor = document.getElementById("resultColor");
   const resultText = document.getElementById("resultText");
 
+  function modalEndEvent(){
+    modalMask.className = "mask";
+    modalContent.style.zIndex = -1;
+    modalContent.style.display = "none";
+  }
+
   resultColor.style.backgroundColor = color;
   resultText.innerHTML = text;
-
-  modalContents.className = "modal open";
-
-  modalClose.addEventListener("click", () => {
-    modalContents.className = "modal";
-  });
+  modalMask.className = "mask open";
+  modalContent.style.zIndex = 2;
+  modalContent.style.display = "block";
+  modalMask.addEventListener("click", () => modalEndEvent());
+  modalClose.addEventListener("click", () => modalEndEvent());
 }
 
 startButton.addEventListener("click", () => {
