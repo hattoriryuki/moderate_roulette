@@ -10,11 +10,17 @@ let addFlg = false;
 let itemCount = 0;
 let itemColor;
 let data = [];
+const mediaQuery = window.matchMedia('(max-width: 768px)');
 const startButton = document.getElementById("startButton");
 const stopButton = document.getElementById("stopButton");
 const addButton = document.getElementById("addButton");
 const inputText = document.getElementById("inputText");
 
+if(mediaQuery.matches){
+  radius = 180;
+  canvas.width = 400;
+  canvas.height = 400;
+}
 ctx.translate(canvas.width / 2, canvas.height / 2);
 
 drawRoullet(0);
