@@ -5,7 +5,6 @@ let angle = 0;
 let current_deg = 0;
 let deg_part = 0;
 let fontSize = '20px serif';
-let startFlg = false;
 let stopFlg = false;
 let addFlg = false;
 let itemCount = 0;
@@ -83,7 +82,6 @@ function runRoullet() {
     } else {
       count = 0;
       clearInterval(timer);
-      startFlg = false;
       stopFlg = false;
       endEvent();
     }
@@ -201,6 +199,8 @@ function modalOpen(color, text){
     modalMask.className = "mask";
     modalContent.style.zIndex = -1;
     modalContent.style.display = "none";
+    startButton.style.display = "block";
+    stopButton.style.display = "none";  
   }
 
   resultColor.style.backgroundColor = color;
@@ -213,18 +213,13 @@ function modalOpen(color, text){
 }
 
 startButton.addEventListener("click", () => {
-  if (startFlg === false) {
-    drawRoullet(0);
-    runRoullet();
-    startFlg = true;
-  } else {
-    startFlg = false;
-  }
+  startButton.style.display = "none";
+  stopButton.style.display = "block";
+  drawRoullet(0);
+  runRoullet();
 });
 
-stopButton.addEventListener("click", () => {
-  if(startFlg)stopFlg = true;
-});
+stopButton.addEventListener("click", () => stopFlg = true);
 
 addButton.addEventListener("click", () => {
   if(inputText.value){
