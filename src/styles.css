@@ -168,12 +168,14 @@ canvas {
 
 .modal-content {
   position: absolute;
-  top: 10px;
+  top: 0;
+  bottom: 0;
   left: 0;
   right: 0;
-  background-color: #f4f4f4;
   margin: 20% auto;
+  background-color: #f4f4f4;
   width: 30%;
+  height: 25%;
   box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2),0 7px 20px 0 rgba(0,0,0,0.17);
   text-align: center;
   transition: all .5s;
@@ -253,7 +255,14 @@ canvas {
     margin-left: 4px;
   }
   .modal-content {
-    top: 50px;
-    width: 40%; 
+    top: 200px;
+    width: 50%;
+    height: 20%;
+  }
+  .result-text {
+    font-size: small;
+  }
+  .modal-content > p {
+    font-size: small;
   }
 }
