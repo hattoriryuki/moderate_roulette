@@ -208,13 +208,15 @@ function modalOpen(color, text){
     modalContent.style.zIndex = -1;
     modalContent.style.display = "none";
     startButton.style.display = "block";
-    stopButton.style.display = "none";  
+    stopButton.style.display = "none";
+    addButton.disabled = false;
   }
 }
 
 startButton.addEventListener("click", () => {
   startButton.style.display = "none";
   stopButton.style.display = "block";
+  addButton.disabled = true;
   drawRoullet(0);
   runRoullet();
 });
