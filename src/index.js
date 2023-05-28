@@ -4,6 +4,7 @@ let radius = 220;
 let angle = 0;
 let current_deg = 0;
 let deg_part = 0;
+let fontSize = '20px serif';
 let startFlg = false;
 let stopFlg = false;
 let addFlg = false;
@@ -17,9 +18,10 @@ const addButton = document.getElementById("addButton");
 const inputText = document.getElementById("inputText");
 
 if(mediaQuery.matches){
-  radius = 180;
-  canvas.width = 400;
-  canvas.height = 400;
+  radius = 150;
+  canvas.width = 350;
+  canvas.height = 350;
+  fontSize = '15px serif'
 }
 ctx.translate(canvas.width / 2, canvas.height / 2);
 
@@ -37,7 +39,7 @@ function drawRoullet(offset) {
     ctx.beginPath();
     ctx.arc(0, 0, radius,0 * Math.PI / 180, 360 * Math.PI / 180);
     ctx.stroke();
-    ctx.font = '20px serif';
+    ctx.font = fontSize;
     ctx.fillStyle = 'black';
     ctx.fillText('アイテムを入力してください', -radius / 2 -20, 0);
     drawTriangle();
