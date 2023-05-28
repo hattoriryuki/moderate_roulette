@@ -85,6 +85,7 @@ canvas {
 .stop-button {
   background-color: #FF7A4E;
   border: none;
+  display: none;
 }
 
 .stop-button:hover {

@@ -5,7 +5,6 @@ let angle = 0;
 let current_deg = 0;
 let deg_part = 0;
 let fontSize = '20px serif';
-let startFlg = false;
 let stopFlg = false;
 let addFlg = false;
 let itemCount = 0;
@@ -83,7 +82,6 @@ function runRoullet() {
     } else {
       count = 0;
       clearInterval(timer);
-      startFlg = false;
       stopFlg = false;
       endEvent();
     }
@@ -176,6 +174,7 @@ function createItemList(text, color) {
     document.getElementById("inputItems").removeChild(deleteTarget);
     itemCount--;
     drawRoullet(0);
+    if(data.length < 2)startButton.disabled = true;
   });
   div.appendChild(paint);
   div.appendChild(p);
@@ -197,12 +196,6 @@ function modalOpen(color, text){
   const resultColor = document.getElementById("resultColor");
   const resultText = document.getElementById("resultText");
 
-  function modalEndEvent(){
-    modalMask.className = "mask";
-    modalContent.style.zIndex = -1;
-    modalContent.style.display = "none";
-  }
-
   resultColor.style.backgroundColor = color;
   resultText.innerHTML = text;
   modalMask.className = "mask open";
@@ -210,27 +203,32 @@ function modalOpen(color, text){
   modalContent.style.display = "block";
   modalMask.addEventListener("click", () => modalEndEvent());
   modalClose.addEventListener("click", () => modalEndEvent());
+  function modalEndEvent(){
+    modalMask.className = "mask";
+    modalContent.style.zIndex = -1;
+    modalContent.style.display = "none";
+    startButton.style.display = "block";
+    stopButton.style.display = "none";
+    addButton.disabled = false;
+  }
 }
 
 startButton.addEventListener("click", () => {
-  if (startFlg === false) {
-    drawRoullet(0);
-    runRoullet();
-    startFlg = true;
-  } else {
-    startFlg = false;
-  }
+  startButton.style.display = "none";
+  stopButton.style.display = "block";
+  addButton.disabled = true;
+  drawRoullet(0);
+  runRoullet();
 });
 
-stopButton.addEventListener("click", () => {
-  if(startFlg)stopFlg = true;
-});
+stopButton.addEventListener("click", () => stopFlg = true);
 
 addButton.addEventListener("click", () => {
   if(inputText.value){
     addFlg = true;
     getRandomColor();
     onClickAdd();
+    if(data.length > 1)startButton.disabled = false;
   } else {
     alert("何か入力してください");
   }
