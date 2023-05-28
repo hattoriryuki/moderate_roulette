@@ -174,6 +174,7 @@ function createItemList(text, color) {
     document.getElementById("inputItems").removeChild(deleteTarget);
     itemCount--;
     drawRoullet(0);
+    if(data.length < 2)startButton.disabled = true;
   });
   div.appendChild(paint);
   div.appendChild(p);
@@ -195,14 +196,6 @@ function modalOpen(color, text){
   const resultColor = document.getElementById("resultColor");
   const resultText = document.getElementById("resultText");
 
-  function modalEndEvent(){
-    modalMask.className = "mask";
-    modalContent.style.zIndex = -1;
-    modalContent.style.display = "none";
-    startButton.style.display = "block";
-    stopButton.style.display = "none";  
-  }
-
   resultColor.style.backgroundColor = color;
   resultText.innerHTML = text;
   modalMask.className = "mask open";
@@ -210,6 +203,13 @@ function modalOpen(color, text){
   modalContent.style.display = "block";
   modalMask.addEventListener("click", () => modalEndEvent());
   modalClose.addEventListener("click", () => modalEndEvent());
+  function modalEndEvent(){
+    modalMask.className = "mask";
+    modalContent.style.zIndex = -1;
+    modalContent.style.display = "none";
+    startButton.style.display = "block";
+    stopButton.style.display = "none";  
+  }
 }
 
 startButton.addEventListener("click", () => {
@@ -226,6 +226,7 @@ addButton.addEventListener("click", () => {
     addFlg = true;
     getRandomColor();
     onClickAdd();
+    if(data.length > 1)startButton.disabled = false;
   } else {
     alert("何か入力してください");
   }
