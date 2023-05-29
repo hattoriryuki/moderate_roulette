@@ -8,12 +8,13 @@ let fontSize = '20px serif';
 let stopFlg = false;
 let addFlg = false;
 let itemCount = 0;
+let colorCount = 0;
 let itemColor;
 let data = [];
 const mediaQuery = window.matchMedia('(max-width: 768px)');
 const startButton = document.getElementById("startButton");
 const stopButton = document.getElementById("stopButton");
-const addButton = document.getElementById("addButton");
+const form = document.getElementById("form");
 const inputText = document.getElementById("inputText");
 
 if(mediaQuery.matches){
@@ -27,7 +28,7 @@ ctx.translate(canvas.width / 2, canvas.height / 2);
 drawRoullet(0);
 drawTriangle();
 
-function drawRoullet(offset) {
+function drawRoullet(offset){
   let sum_deg = 0;
   if(addFlg === true){
     addFlg = false;
@@ -44,7 +45,7 @@ function drawRoullet(offset) {
     drawTriangle();
   }
   deg_part = 360 / itemCount;
-  for (let i = 0; i < itemCount; i++) {
+  for(let i = 0; i < itemCount; i++){
     angle = sum_deg + offset + 90;
     let start_deg = (360 - angle) * Math.PI / 180;
     let end_deg = ((360 - (angle + deg_part)) * Math.PI) / 180;
@@ -58,7 +59,7 @@ function drawRoullet(offset) {
   current_deg = offset % 360;
 }
 
-function drawTriangle() {
+function drawTriangle(){
   ctx.beginPath();
   ctx.moveTo(0, -radius);
   ctx.lineTo(-8, -(radius + 20));
@@ -68,18 +69,18 @@ function drawTriangle() {
   ctx.fill();
 }
 
-function runRoullet() {
+function runRoullet(){
   let deg_counter = 0;
   let count = 0;
-  let timer = setInterval(function () {
+  let timer = setInterval(function(){
     deg_counter += 26;
-    if(stopFlg) {
+    if(stopFlg){
       count++;
     }
-    if (count < 200) {
+    if(count < 200){
       deg_counter -= count / 8;
       drawRoullet(deg_counter);
-    } else {
+    }else{
       count = 0;
       clearInterval(timer);
       stopFlg = false;
@@ -92,11 +93,11 @@ function runRoullet() {
     let reversed = [...data].reverse();
     let color;
     let text;
-    for (let i = 0; i < data.length; i++) {
-      if (
+    for(let i = 0; i < data.length; i++){
+      if(
         deg_part * sum < current_deg &&
         current_deg < deg_part * (sum + 1)
-      ) {
+      ){
         color = reversed[i].color;
         text = reversed[i].name;
         break;
@@ -107,13 +108,13 @@ function runRoullet() {
   }
 }
 
-function onClickAdd() {
+function onClickAdd(){
   const text = inputText.value;
   let color = itemColor;
   let judge = data.some(e => e.name === text);
   if(judge){
     alert("同じアイテムは登録できません");
-  } else {
+  } else{
     data.push({name: text, color: color});
     inputText.value = "";
     createItemList(text, color);
@@ -121,7 +122,7 @@ function onClickAdd() {
   }
 }
 
-function createItemList(text, color) {
+function createItemList(text, color){
   const div = document.createElement("div");
   div.className = "item";
 
@@ -139,7 +140,7 @@ function createItemList(text, color) {
   editButton.addEventListener("click", () => {
     const editItem = editButton.parentNode;
     const editTarget = editItem.children[1];
-    if (editFlg === 0) {
+    if (editFlg === 0){
       editFlg = 1;
       editButton.innerText = "決定";
       const input = document.createElement("input");
@@ -148,11 +149,11 @@ function createItemList(text, color) {
       input.className = "item-name";
       editTarget.hidden = true;
       editItem.insertBefore(input, editButton);
-    } else {
+    } else{
       const editedText = editItem.children[2].value;
-      if (editedText === "") {
+      if (editedText === ""){
         alert("未入力の項目があります");
-      } else {
+      } else{
         editFlg = 0;
         editButton.innerText = "編集";
         editItem.children[2].remove();
@@ -180,12 +181,27 @@ function createItemList(text, color) {
   div.appendChild(p);
   div.appendChild(editButton);
   div.appendChild(deleteButton);
-
   document.getElementById("inputItems").appendChild(div);
 }
 
 function getRandomColor(){
-  let num = 360 * Math.random();
+  let num;
+  colorCount++;
+  num = 360 / colorCount;
+  num += Math.random();
+  switch(true){
+    case colorCount > 9:
+      colorCount = 1;
+      break;
+    case colorCount % 2 === 0:
+      num = num * (colorCount - 1);
+      break;
+    case colorCount % 3 === 0:
+      num = 90 * (Math.random() * (2 - 1) + 1); 
+      break;
+    default:
+      break;
+  }
   itemColor = `hsl(${num}, 100%, 50%)`;
 }
 
@@ -209,27 +225,26 @@ function modalOpen(color, text){
     modalContent.style.display = "none";
     startButton.style.display = "block";
     stopButton.style.display = "none";
-    addButton.disabled = false;
   }
 }
 
 startButton.addEventListener("click", () => {
   startButton.style.display = "none";
   stopButton.style.display = "block";
-  addButton.disabled = true;
   drawRoullet(0);
   runRoullet();
 });
 
 stopButton.addEventListener("click", () => stopFlg = true);
 
-addButton.addEventListener("click", () => {
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
   if(inputText.value){
     addFlg = true;
     getRandomColor();
     onClickAdd();
     if(data.length > 1)startButton.disabled = false;
-  } else {
+  } else{
     alert("何か入力してください");
   }
 });
