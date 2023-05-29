@@ -8,6 +8,7 @@ let fontSize = '20px serif';
 let stopFlg = false;
 let addFlg = false;
 let itemCount = 0;
+let colorCount = 0;
 let itemColor;
 let data = [];
 const mediaQuery = window.matchMedia('(max-width: 768px)');
@@ -185,7 +186,22 @@ function createItemList(text, color) {
 }
 
 function getRandomColor(){
-  let num = 360 * Math.random();
+  let num;
+  colorCount++;
+  num = 360 / colorCount;
+  switch(true){
+    case colorCount > 9:
+      colorCount = 1;
+      break;
+    case colorCount % 2 === 0:
+      num = num * (colorCount - 1);
+      break;
+    case colorCount % 3 === 0:
+      num = 120 * (Math.random() * (2 - 1) + 1); 
+      break;
+    default:
+      break;
+  }
   itemColor = `hsl(${num}, 100%, 50%)`;
 }
 
