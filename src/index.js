@@ -196,7 +196,7 @@ function getRandomColor(){
       num = num * (colorCount - 1);
       break;
     case colorCount % 3 === 0:
-      num = 120 * (Math.random() * (2 - 1) + 1); 
+      num = 90 * (Math.random() * (2 - 1) + 1); 
       break;
     default:
       break;
