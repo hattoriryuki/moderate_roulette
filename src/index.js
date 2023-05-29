@@ -28,7 +28,7 @@ ctx.translate(canvas.width / 2, canvas.height / 2);
 drawRoullet(0);
 drawTriangle();
 
-function drawRoullet(offset) {
+function drawRoullet(offset){
   let sum_deg = 0;
   if(addFlg === true){
     addFlg = false;
@@ -45,7 +45,7 @@ function drawRoullet(offset) {
     drawTriangle();
   }
   deg_part = 360 / itemCount;
-  for (let i = 0; i < itemCount; i++) {
+  for(let i = 0; i < itemCount; i++){
     angle = sum_deg + offset + 90;
     let start_deg = (360 - angle) * Math.PI / 180;
     let end_deg = ((360 - (angle + deg_part)) * Math.PI) / 180;
@@ -59,7 +59,7 @@ function drawRoullet(offset) {
   current_deg = offset % 360;
 }
 
-function drawTriangle() {
+function drawTriangle(){
   ctx.beginPath();
   ctx.moveTo(0, -radius);
   ctx.lineTo(-8, -(radius + 20));
@@ -69,18 +69,18 @@ function drawTriangle() {
   ctx.fill();
 }
 
-function runRoullet() {
+function runRoullet(){
   let deg_counter = 0;
   let count = 0;
-  let timer = setInterval(function () {
+  let timer = setInterval(function(){
     deg_counter += 26;
-    if(stopFlg) {
+    if(stopFlg){
       count++;
     }
-    if (count < 200) {
+    if(count < 200){
       deg_counter -= count / 8;
       drawRoullet(deg_counter);
-    } else {
+    }else{
       count = 0;
       clearInterval(timer);
       stopFlg = false;
@@ -93,11 +93,11 @@ function runRoullet() {
     let reversed = [...data].reverse();
     let color;
     let text;
-    for (let i = 0; i < data.length; i++) {
-      if (
+    for(let i = 0; i < data.length; i++){
+      if(
         deg_part * sum < current_deg &&
         current_deg < deg_part * (sum + 1)
-      ) {
+      ){
         color = reversed[i].color;
         text = reversed[i].name;
         break;
@@ -108,13 +108,13 @@ function runRoullet() {
   }
 }
 
-function onClickAdd() {
+function onClickAdd(){
   const text = inputText.value;
   let color = itemColor;
   let judge = data.some(e => e.name === text);
   if(judge){
     alert("同じアイテムは登録できません");
-  } else {
+  }else{
     data.push({name: text, color: color});
     inputText.value = "";
     createItemList(text, color);
@@ -122,7 +122,7 @@ function onClickAdd() {
   }
 }
 
-function createItemList(text, color) {
+function createItemList(text, color){
   const div = document.createElement("div");
   div.className = "item";
 
@@ -140,7 +140,7 @@ function createItemList(text, color) {
   editButton.addEventListener("click", () => {
     const editItem = editButton.parentNode;
     const editTarget = editItem.children[1];
-    if (editFlg === 0) {
+    if (editFlg === 0){
       editFlg = 1;
       editButton.innerText = "決定";
       const input = document.createElement("input");
@@ -149,11 +149,11 @@ function createItemList(text, color) {
       input.className = "item-name";
       editTarget.hidden = true;
       editItem.insertBefore(input, editButton);
-    } else {
+    } else{
       const editedText = editItem.children[2].value;
-      if (editedText === "") {
+      if (editedText === ""){
         alert("未入力の項目があります");
-      } else {
+      } else{
         editFlg = 0;
         editButton.innerText = "編集";
         editItem.children[2].remove();
@@ -181,7 +181,6 @@ function createItemList(text, color) {
   div.appendChild(p);
   div.appendChild(editButton);
   div.appendChild(deleteButton);
-
   document.getElementById("inputItems").appendChild(div);
 }
 
@@ -245,7 +244,7 @@ addButton.addEventListener("click", () => {
     getRandomColor();
     onClickAdd();
     if(data.length > 1)startButton.disabled = false;
-  } else {
+  } else{
     alert("何か入力してください");
   }
 });
