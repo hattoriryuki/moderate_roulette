@@ -114,7 +114,7 @@ function onClickAdd(){
   let judge = data.some(e => e.name === text);
   if(judge){
     alert("同じアイテムは登録できません");
-  }else{
+  } else{
     data.push({name: text, color: color});
     inputText.value = "";
     createItemList(text, color);
@@ -188,6 +188,7 @@ function getRandomColor(){
   let num;
   colorCount++;
   num = 360 / colorCount;
+  num += Math.random();
   switch(true){
     case colorCount > 9:
       colorCount = 1;
