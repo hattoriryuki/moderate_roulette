@@ -14,7 +14,7 @@ let data = [];
 const mediaQuery = window.matchMedia('(max-width: 768px)');
 const startButton = document.getElementById("startButton");
 const stopButton = document.getElementById("stopButton");
-const addButton = document.getElementById("addButton");
+const form = document.getElementById("form");
 const inputText = document.getElementById("inputText");
 
 if(mediaQuery.matches){
@@ -225,21 +225,20 @@ function modalOpen(color, text){
     modalContent.style.display = "none";
     startButton.style.display = "block";
     stopButton.style.display = "none";
-    addButton.disabled = false;
   }
 }
 
 startButton.addEventListener("click", () => {
   startButton.style.display = "none";
   stopButton.style.display = "block";
-  addButton.disabled = true;
   drawRoullet(0);
   runRoullet();
 });
 
 stopButton.addEventListener("click", () => stopFlg = true);
 
-addButton.addEventListener("click", () => {
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
   if(inputText.value){
     addFlg = true;
     getRandomColor();
