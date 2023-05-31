@@ -60,6 +60,14 @@ canvas {
   width: 70px;
   cursor: pointer;
 }
+.init-button {
+  background-color: #67EB3C;
+  border: none;
+}
+
+.init-button:hover {
+  background-color: #68eb3cd2;;
+}
 
 .start-button {
   background-color: #67EB3C;

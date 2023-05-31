@@ -16,6 +16,7 @@ const startButton = document.getElementById("startButton");
 const stopButton = document.getElementById("stopButton");
 const form = document.getElementById("form");
 const inputText = document.getElementById("inputText");
+const initButton = document.getElementById("initButton");
 
 if(mediaQuery.matches){
   radius = 150;
@@ -247,4 +248,10 @@ form.addEventListener("submit", (e) => {
   } else{
     alert("何か入力してください");
   }
+});
+
+initButton.addEventListener("click", () => {
+  const inputItems = document.getElementById("inputItems");
+  inputItems.removeChild();
+  data = [];
 });
