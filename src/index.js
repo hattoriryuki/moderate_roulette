@@ -251,12 +251,14 @@ form.addEventListener("submit", (e) => {
 });
 
 initButton.addEventListener("click", () => {
-  const inputItems = document.getElementById("inputItems");
-  while(inputItems.firstChild){
-    inputItems.removeChild(inputItems.firstChild);
+  if(confirm("ルーレットをリセットしますか？")){
+    const inputItems = document.getElementById("inputItems");
+    while(inputItems.firstChild){
+      inputItems.removeChild(inputItems.firstChild);
+    }
+    data = [];
+    itemCount = 0;
+    console.log(data);
+    drawRoullet(0);
   }
-  data = [];
-  itemCount = 0;
-  console.log(data);
-  drawRoullet(0);
 });
