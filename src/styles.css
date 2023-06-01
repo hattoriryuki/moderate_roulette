@@ -50,43 +50,58 @@ canvas {
 .action-button {
   display: flex;
   justify-content: flex-end;
-  gap: 8px;
+  gap: 4px;
 }
 
 .action-button > button {
   border-radius: 50%;
-  padding: 2px 5px;
   margin-top: 5px;
-  width: 70px;
+  width: 40px;
   cursor: pointer;
 }
-.init-button {
-  background-color: #67EB3C;
+
+.add-button {
+  background-color: transparent;
   border: none;
+  font-size: xx-large;
+  color: #fbca7b;
+}
+
+.add-button:hover {
+  color: #f9ddb1;
+}
+
+.init-button {
+  background-color: transparent;
+  border: none;
+  font-size: xx-large;
 }
 
 .init-button:hover {
-  background-color: #68eb3cd2;;
+  color: gray;
 }
 
 .start-button {
-  background-color: #67EB3C;
+  background-color: transparent;
+  color: #67EB3C;
+  font-size: xx-large;
   border: none;
 }
 
 .start-button:hover {
-  background-color: #68eb3cd2;;
+  color: #84ed61d2;;
 }
 
 .stop-button {
-  background-color: #FF7A4E;
+  background-color: transparent;
+  color: #FF7A4E;
   border: none;
+  font-size: xx-large;
   display: none;
 }
 
 .stop-button:hover {
-  background-color: #ff7a4ee4;
-  border: 1px white solid;
+  color: #ff7a4ee4;
 }
 
 .items {
@@ -119,32 +134,34 @@ canvas {
 }
 
 .item-name {
-  width: 70%;
+  width: 80%;
+  margin-left: 4px;
 }
 
 .item > button {
-  width: 4em;
+  width: 2em;
   height: 30px;
   border: none;
   cursor: pointer;
+  background-color: transparent;
+  font-size: larger;
 }
 
 .edit-button {
-  background-color: #D9D9D9;
+  color: #ababab;
+  padding: 1px 2px;
 }
 
 .edit-button:hover {
-  background-color: #d9d9d9ac;
-  border: 1px white solid;
+  color: #d9d9d9ac;
 }
 
 .delete-button {
-  background-color: #F06262;
+  color: #F06262;
 }
 
 .delete-button:hover {
-  background-color: #f06262dd;
-  border: 1px white solid;
+  color: #ef8686dd;
 }
 
 .mask {

@@ -14,6 +14,7 @@ let data = [];
 const mediaQuery = window.matchMedia('(max-width: 768px)');
 const startButton = document.getElementById("startButton");
 const stopButton = document.getElementById("stopButton");
+const addButton = document.getElementById("addButton");
 const form = document.getElementById("form");
 const inputText = document.getElementById("inputText");
 const initButton = document.getElementById("initButton");
@@ -135,15 +136,21 @@ function createItemList(text, color){
   p.innerText = text;
   p.className = "item-name";
   const editButton = document.createElement("button");
-  let editFlg = 0;
-  editButton.innerText = "編集";
+  const editIcon = document.createElement("i");
+  const confirmIcon = document.createElement("i");
+  confirmIcon.className = "fa-regular fa-circle-check confirm";
+  confirmIcon.style.color = "lightgreen";
+  editIcon.className = "fa-solid fa-pen"
   editButton.className = "edit-button";
+  editButton.appendChild(editIcon);
+  let editFlg = 0;
   editButton.addEventListener("click", () => {
     const editItem = editButton.parentNode;
     const editTarget = editItem.children[1];
     if (editFlg === 0){
       editFlg = 1;
-      editButton.innerText = "決定";
+      editButton.removeChild(editIcon);
+      editButton.appendChild(confirmIcon);
       const input = document.createElement("input");
       input.type = "text";
       input.value = editTarget.innerText;
@@ -156,7 +163,8 @@ function createItemList(text, color){
         alert("未入力の項目があります");
       } else{
         editFlg = 0;
-        editButton.innerText = "編集";
+        editButton.removeChild(confirmIcon);
+        editButton.appendChild(editIcon);
         editItem.children[2].remove();
         editTarget.hidden = false;
         let index = data.findIndex(e => e.name === editTarget.innerText);
@@ -167,7 +175,9 @@ function createItemList(text, color){
   });
 
   const deleteButton = document.createElement("button");
-  deleteButton.innerText = "削除";
+  const deleteIcon = document.createElement("i");
+  deleteIcon.className = "fa-regular fa-trash-can";
+  deleteButton.appendChild(deleteIcon);
   deleteButton.className = "delete-button";
   deleteButton.addEventListener("click", () => {
     const deleteTarget = deleteButton.parentNode;
@@ -229,6 +239,17 @@ function modalOpen(color, text){
   }
 }
 
+function itemAddEvent(){
+  if(inputText.value){
+    addFlg = true;
+    getRandomColor();
+    onClickAdd();
+    if(data.length > 1)startButton.disabled = false;
+  } else{
+    alert("何か入力してください");
+  }
+}
+
 startButton.addEventListener("click", () => {
   startButton.style.display = "none";
   stopButton.style.display = "block";
@@ -240,14 +261,11 @@ stopButton.addEventListener("click", () => stopFlg = true);
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  if(inputText.value){
-    addFlg = true;
-    getRandomColor();
-    onClickAdd();
-    if(data.length > 1)startButton.disabled = false;
-  } else{
-    alert("何か入力してください");
-  }
+  itemAddEvent()
+});
+
+addButton.addEventListener("click", () => {
+  itemAddEvent()
 });
 
 initButton.addEventListener("click", () => {
