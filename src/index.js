@@ -252,6 +252,11 @@ form.addEventListener("submit", (e) => {
 
 initButton.addEventListener("click", () => {
   const inputItems = document.getElementById("inputItems");
-  inputItems.removeChild();
+  while(inputItems.firstChild){
+    inputItems.removeChild(inputItems.firstChild);
+  }
   data = [];
+  itemCount = 0;
+  console.log(data);
+  drawRoullet(0);
 });
