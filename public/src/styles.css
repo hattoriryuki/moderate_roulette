@@ -3,14 +3,14 @@ body {
 }
 
 header {
+  display: flex;
   background-color: #D9D9D9;
   height: 64px;
+  align-items: center;
 }
 
-h2 {
-  margin: 0 0 0 16px;
-  color: #7A7373;
-  line-height: 64px;
+img {
+  margin-left: 16px;
 }
 
 .container {
