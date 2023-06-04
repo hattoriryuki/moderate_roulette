@@ -232,6 +232,12 @@ canvas {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+
+.result-content {
+  display: flex;
+  align-items: center;
   gap: 10px;
 }
 
@@ -245,9 +251,15 @@ canvas {
   font-size: x-large;
 }
 
-.modal-content > p:last-of-type {
-  text-align: right; 
-  padding-right: 32px;
+.result > p {
+  position: absolute;
+  right: 0;
+  margin-right: 16px;
+}
+
+.share-button {
+  text-align: right;
+  margin: 16px 16px 0 0;
 }
 
 @media only screen and (max-width: 768px) {

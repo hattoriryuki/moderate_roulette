@@ -18,6 +18,7 @@ const addButton = document.getElementById("addButton");
 const form = document.getElementById("form");
 const inputText = document.getElementById("inputText");
 const initButton = document.getElementById("initButton");
+const shareButton = document.getElementById("shareButton");
 
 if(mediaQuery.matches){
   radius = 150;
@@ -276,7 +277,12 @@ initButton.addEventListener("click", () => {
     }
     data = [];
     itemCount = 0;
-    console.log(data);
     drawRoullet(0);
   }
+});
+
+shareButton.addEventListener("click", () => {
+  const text = resultText.innerText;
+  const url = `http://twitter.com/share?url=https://moderate-roullet.web.app/&text=今回ルーレットで選ばれたのは、「 ${text} 」でした！&hashtags=ModerateRoullet`;
+  shareButton.setAttribute("href", url);
 });
