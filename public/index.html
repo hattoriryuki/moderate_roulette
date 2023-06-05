@@ -18,6 +18,15 @@
     <header>
       <img src="img/logo.png" width="52px" height="54px">
       <img src="img/title.png" width="250px" height="30px">
+      <div class="header-menu">
+        <p>作った人</p>
+        <a href="http://twitter.com/ryuki_runteq_27" target=”_blank”>
+          <i class="fa-brands fa-twitter twitter"></i>
+        </a>
+        <a href="https://github.com/hattoriryuki" target="_blank">
+          <i class="fa-brands fa-github"></i>
+        </a>  
+      </div>
     </header>
     <div class="container" id="container">
       <canvas id="canvas" width="500" height="500">
@@ -29,10 +38,18 @@
             <input type="text" autocomplete="off" id="inputText">
           </form>
           <div class="action-button">
-            <button class="add-button" id="addButton"><i class="fa-solid fa-plus"></i></button>
-            <button class="init-button" id="initButton"><i class="fa-solid fa-rotate-right"></i></button>
-            <button class="start-button" id="startButton" disabled><i class="fa-regular fa-circle-play"></i></button>
-            <button class="stop-button" id="stopButton"><i class="fa-regular fa-circle-stop"></i></button>
+            <button class="add-button" id="addButton">
+              <i class="fa-solid fa-plus"></i>
+            </button>
+            <button class="init-button" id="initButton">
+              <i class="fa-solid fa-rotate-right"></i>
+            </button>
+            <button class="start-button" id="startButton" disabled>
+              <i class="fa-regular fa-circle-play"></i>
+            </button>
+            <button class="stop-button" id="stopButton">
+              <i class="fa-regular fa-circle-stop"></i>
+            </button>
           </div>
         </div>
         <div class="items" id="inputItems"></div>
@@ -54,7 +71,7 @@
       </div>
       <div class="share-button">
         <a href="#" target="_blank" id="shareButton">
-          <i class="fa-brands fa-square-twitter" style="color: #1DA1F2; font-size: xx-large;"></i>
+          <i class="fa-brands fa-square-twitter twitter"></i>
         </a>    
       </div>
     </div>
