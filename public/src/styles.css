@@ -25,6 +25,14 @@ img {
   color: #747373;
 }
 
+.header-menu > a {
+  font-size: x-large;
+}
+
+.twitter {
+  color: #1DA1F2;
+}
+
 .container {
   width: 100%;
   display: flex;
@@ -272,6 +280,7 @@ canvas {
 .share-button {
   text-align: right;
   margin: 16px 16px 0 0;
+  font-size: xx-large;
 }
 
 @media only screen and (max-width: 768px) {
