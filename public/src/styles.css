@@ -39,7 +39,7 @@ img {
   border: none;
   color: #747373;
   margin: 0 24px 0 12px;
-  font-size: 16px;
+  font-size: 12px;
 }
 
 .terms-button:hover {
@@ -77,7 +77,7 @@ canvas {
   justify-content: flex-start;
 }
 
-.input-text>input {
+.input-text > input {
   width: 100%;
 }
 
@@ -295,6 +295,54 @@ canvas {
   text-align: right;
   margin: 16px 16px 0 0;
   font-size: xx-large;
+}
+
+.terms-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: auto;
+  padding: 6px 0;
+  display: none;
+  z-index: -1;
+  background-color: white;
+  width: 50%;
+  height: 200px;
+  text-align: center;
+  box-shadow: 0 5px 8px 0 rgba(28, 28, 28, 0.2),0 7px 20px 0 rgba(0,0,0,0.17);
+  transform: translate(-50%, -50%);
+}
+
+.terms-title {
+  display: flex;
+}
+
+.terms-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgb(179, 176, 176);
+  margin-left: auto;
+  width: 30px;
+  height: 30px;
+  border: none;
+  color: white;
+}
+
+.terms-close:hover {
+  background-color: rgb(150, 147, 147);
+  cursor: pointer;
+}
+
+.terms-title > li {
+  font-size: 24px;
+}
+
+.terms-content > ul {
+  display: inline-block;
+  list-style: none;
+  text-align: left;
+  padding: 0;
 }
 
 @media only screen and (max-width: 768px) {

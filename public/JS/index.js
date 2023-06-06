@@ -19,6 +19,8 @@ const form = document.getElementById("form");
 const inputText = document.getElementById("inputText");
 const initButton = document.getElementById("initButton");
 const shareButton = document.getElementById("shareButton");
+const modalMask = document.getElementById("modalMask");
+const termsButton = document.getElementById("termsButton");
 
 if(mediaQuery.matches){
   radius = 150;
@@ -218,7 +220,6 @@ function getRandomColor(){
 }
 
 function modalOpen(color, text){
-  const modalMask = document.getElementById("modalMask");
   const modalContent = document.getElementById("modalContent");
   const modalClose = document.getElementById("modalClose");
   const resultColor = document.getElementById("resultColor");
@@ -248,6 +249,22 @@ function itemAddEvent(){
     if(data.length > 1)startButton.disabled = false;
   } else{
     alert("何か入力してください");
+  }
+}
+
+function termsModal(){
+  const termsContent = document.getElementById("termsContent");
+  const termsClose = document.getElementById("termsClose");
+  modalMask.className = "mask open";
+  termsContent.style.zIndex = 10;
+  termsContent.style.display = "block";
+  modalMask.addEventListener("click", () => termsCloseEvent());
+  termsClose.addEventListener("click", () => termsCloseEvent());
+
+  function termsCloseEvent(){
+    modalMask.className = "mask";
+    termsContent.style.zIndex = -1;
+    termsContent.style.display = "none";
   }
 }
 
@@ -285,4 +302,8 @@ shareButton.addEventListener("click", () => {
   const text = resultText.innerText;
   const url = `http://twitter.com/share?url=https://moderate-roullet.web.app/&text=今回ルーレットで選ばれたのは、「 ${text} 」でした！&hashtags=ModerateRoullet`;
   shareButton.setAttribute("href", url);
+});
+
+termsButton.addEventListener("click", () => {
+  termsModal();
 });
