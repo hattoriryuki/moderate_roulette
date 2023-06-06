@@ -13,21 +13,42 @@ img {
   margin-left: 16px;
 }
 
+.fa-solid {
+  position: absolute;
+  right: 64px;
+  font-size: xx-large;
+  color: white;
+}
+
+.hamburger-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 1;
+  right: 16px;
+  top: 66px;
+  border: rgb(196, 192, 192) 1px solid;
+  background-color: white;
+  padding: 16px;
+}
+
 .header-menu {
   display: flex;
-  margin-left: auto;
-  margin-right: 24px;
   align-items: center;
 }
 
 .header-menu > p {
   color: #747373;
-  margin-right: 10px;
+  margin: 0 10px 0 0;
+  font-size: 16px;
+  text-align: left;
 }
 
 .header-menu > a {
-  font-size: x-large;
-  margin-right: 6px;
+  font-size: large;
+  margin-right: 4px;
 }
 
 .twitter {
@@ -38,8 +59,9 @@ img {
   background: none;
   border: none;
   color: #747373;
-  margin: 0 24px 0 12px;
   font-size: 12px;
+  padding: 0;
+  margin-top: 10px;
 }
 
 .terms-button:hover {
