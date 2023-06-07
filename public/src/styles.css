@@ -13,6 +13,16 @@ img {
   margin-left: 16px;
 }
 
+.logo-img {
+  width: 52px;
+  height: 54px;
+}
+
+.title-img {
+  width: 250px;
+  height: 30px;
+}
+
 .hamburger-button {
   position: absolute;
   right: 64px;
@@ -36,7 +46,7 @@ img {
   box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.35);
 }
 
-.hamburger-menu:before{
+.hamburger-menu:before {
   content: "";
   position: absolute;
   top: -20px;
@@ -413,6 +423,23 @@ canvas {
 }
 
 @media only screen and (max-width: 768px) {
+  .logo-img {
+    width: 42px;
+    height: 44px;
+  }
+  .title-img {
+    width: 200px;
+    height: 25px;
+  }
+  .hamburger-button {
+    right: 20px;
+  }
+  .hamburger-menu {
+    right: 8px;
+  }
+  .hamburger-menu:before {
+    left: 85%;
+  }
   .container {
     flex-direction: column;
     margin-top: 10px;
