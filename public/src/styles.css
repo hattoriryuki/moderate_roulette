@@ -13,38 +13,105 @@ img {
   margin-left: 16px;
 }
 
+.hamburger-button {
+  position: absolute;
+  right: 64px;
+  font-size: xx-large;
+  color: white;
+}
+
+.hamburger-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  visibility: hidden;
+  right: 16px;
+  top: 66px;
+  background-color: white;
+  padding: 16px;
+  opacity: 0;
+  transition: all .5s;
+  box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.35);
+}
+
+.hamburger-menu:before{
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: 60%;
+  margin-left: -15px;
+  border: 10px solid transparent;
+  border-bottom: 12px solid #fff;
+  z-index: 2;
+}
+
+.hamburger-button:hover {
+  cursor: pointer;
+}
+
+.hamburger-button:hover +.hamburger-menu {
+  visibility: visible;
+  opacity: 1;
+}
+
+.hamburger-menu:hover {
+  visibility: visible;
+  opacity: 1;
+}
+
 .header-menu {
   display: flex;
-  margin-left: auto;
-  margin-right: 24px;
   align-items: center;
 }
 
 .header-menu > p {
   color: #747373;
-  margin-right: 10px;
+  margin: 0 10px 0 0;
+  font-size: 16px;
+  text-align: left;
 }
 
 .header-menu > a {
-  font-size: x-large;
-  margin-right: 6px;
+  font-size: large;
+  margin-right: 4px;
 }
 
 .twitter {
   color: #1DA1F2;
 }
 
+.twitter:hover {
+  color: rgb(48, 143, 201);
+  text-decoration: underline;
+  text-decoration-color: rgb(180, 178, 178);
+}
+
+.fa-github {
+  color: black;
+}
+
+.fa-github:hover {
+  color: rgb(96, 93, 93);
+  text-decoration: underline;
+  text-decoration-color: rgb(180, 178, 178);
+}
+
 .terms-button {
   background: none;
   border: none;
   color: #747373;
-  margin: 0 24px 0 12px;
   font-size: 12px;
+  padding: 0;
+  margin-top: 10px;
 }
 
 .terms-button:hover {
   cursor: pointer;
-  color: #5c5b5b;
+  color: #454444;
+  text-decoration: underline;
+  text-decoration-color: rgb(180, 178, 178);
 }
 
 .container {
