@@ -82,6 +82,22 @@ img {
   color: #1DA1F2;
 }
 
+.twitter:hover {
+  color: rgb(48, 143, 201);
+  text-decoration: underline;
+  text-decoration-color: rgb(180, 178, 178);
+}
+
+.fa-github {
+  color: black;
+}
+
+.fa-github:hover {
+  color: rgb(96, 93, 93);
+  text-decoration: underline;
+  text-decoration-color: rgb(180, 178, 178);
+}
+
 .terms-button {
   background: none;
   border: none;
@@ -94,6 +110,8 @@ img {
 .terms-button:hover {
   cursor: pointer;
   color: #454444;
+  text-decoration: underline;
+  text-decoration-color: rgb(180, 178, 178);
 }
 
 .container {
