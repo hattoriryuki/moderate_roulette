@@ -455,16 +455,21 @@ canvas {
     padding: 10px;
     height: 200px;
   }
+  .paint {
+    width: 14px;
+    height: 14px;
+  }
   .item-name {
-    margin-left: 4px;
+    margin-left: 2px;
+    width: 70%;
   }
   .item > button {
     margin-left: 4px;
+    width: 1em;
   }
   .modal-content {
     top: 200px;
-    width: 50%;
-    height: 20%;
+    width: 60%;
   }
   .result-text {
     font-size: small;
