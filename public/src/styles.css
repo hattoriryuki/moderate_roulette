@@ -443,6 +443,10 @@ canvas {
   .hamburger-menu:before {
     left: 85%;
   }
+  .hamburger-menu:hover {
+    visibility: hidden;
+    opacity: 0;
+  }
   .container {
     flex-direction: column;
     margin-top: 10px;
