@@ -423,6 +423,9 @@ canvas {
 }
 
 @media only screen and (max-width: 768px) {
+  li {
+    font-size: 12px;
+  }
   .logo-img {
     width: 42px;
     height: 44px;
@@ -468,5 +471,14 @@ canvas {
   }
   .modal-content > p {
     font-size: small;
+  }
+  .terms-content {
+    top: 40%;
+    width: 90%;
+    height: 40%;
+    padding: 0 12px;
+  }
+  .terms-title > li {
+    font-size: 20px;
   }
 }
