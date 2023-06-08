@@ -439,6 +439,7 @@ canvas {
   }
   .hamburger-menu {
     right: 8px;
+    width: 40%;
   }
   .hamburger-menu:before {
     left: 85%;
@@ -446,6 +447,15 @@ canvas {
   .hamburger-menu:hover {
     visibility: hidden;
     opacity: 0;
+  }
+  .header-menu > a {
+    font-size: x-large;
+  }
+  .twitter {
+    margin-right: 6px;
+  }
+  .terms-button {
+    font-size: 14px;
   }
   .container {
     flex-direction: column;
