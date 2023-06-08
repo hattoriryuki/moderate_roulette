@@ -454,6 +454,9 @@ canvas {
   .contents {
     width: 80%;
   }
+  .add-button:hover {
+    color: #fbca7b;
+  }
   .items {
     margin-top: 10px;
     padding: 10px;
@@ -470,6 +473,12 @@ canvas {
   .item > button {
     margin-left: 4px;
     width: 1em;
+  }
+  .edit-button:hover {
+    color: #ababab;
+  }
+  .delete-button:hover {
+    color: #ef8686dd;
   }
   .modal-content {
     top: 200px;
