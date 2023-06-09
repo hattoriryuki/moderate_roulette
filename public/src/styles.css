@@ -98,8 +98,6 @@ input {
 
 .twitter:hover {
   color: rgb(48, 143, 201);
-  text-decoration: underline;
-  text-decoration-color: rgb(180, 178, 178);
 }
 
 .fa-github {
