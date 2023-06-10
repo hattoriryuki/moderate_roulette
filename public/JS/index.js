@@ -27,7 +27,7 @@ if(mediaQuery.matches){
   radius = 150;
   canvas.width = 350;
   canvas.height = 350;
-  fontSize = '15px serif'
+  fontSize = '15px serif';
 }
 ctx.translate(canvas.width / 2, canvas.height / 2);
 
@@ -286,12 +286,10 @@ stopButton.addEventListener("click", () => stopFlg = true);
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  itemAddEvent()
+  itemAddEvent();
 });
 
-addButton.addEventListener("click", () => {
-  itemAddEvent()
-});
+addButton.addEventListener("click", () => itemAddEvent());
 
 initButton.addEventListener("click", () => {
   if(confirm("ルーレットをリセットしますか？")){
@@ -312,6 +310,4 @@ shareButton.addEventListener("click", () => {
   shareButton.setAttribute("href", url);
 });
 
-termsButton.addEventListener("click", () => {
-  termsModal();
-});
+termsButton.addEventListener("click", () => termsModal());
