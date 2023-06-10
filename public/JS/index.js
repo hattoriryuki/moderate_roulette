@@ -21,6 +21,7 @@ const initButton = document.getElementById("initButton");
 const shareButton = document.getElementById("shareButton");
 const modalMask = document.getElementById("modalMask");
 const termsButton = document.getElementById("termsButton");
+const inputTitle = document.getElementById("inputTitle");
 
 if(mediaQuery.matches){
   radius = 150;
@@ -224,11 +225,10 @@ function modalOpen(color, text){
   const modalClose = document.getElementById("modalClose");
   const resultColor = document.getElementById("resultColor");
   const resultText = document.getElementById("resultText");
-  const inputTitle = document.getElementById("inputTitle").value;
   const modalTitle = document.getElementById("modalTitle");
 
-  if(inputTitle != ""){
-    modalTitle.innerHTML = `${inputTitle}に選ばれたのは...`;
+  if(inputTitle.value != ""){
+    modalTitle.innerHTML = `${inputTitle.value}に選ばれたのは...`;
   } else {
     modalTitle.innerHTML = "選ばれたのは...";
   }
@@ -299,6 +299,7 @@ initButton.addEventListener("click", () => {
     while(inputItems.firstChild){
       inputItems.removeChild(inputItems.firstChild);
     }
+    inputTitle.value = "";
     data = [];
     itemCount = 0;
     drawRoullet(0);
