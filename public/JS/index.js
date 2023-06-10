@@ -224,7 +224,14 @@ function modalOpen(color, text){
   const modalClose = document.getElementById("modalClose");
   const resultColor = document.getElementById("resultColor");
   const resultText = document.getElementById("resultText");
+  const inputTitle = document.getElementById("inputTitle").value;
+  const modalTitle = document.getElementById("modalTitle");
 
+  if(inputTitle != ""){
+    modalTitle.innerHTML = `${inputTitle}に選ばれたのは...`;
+  } else {
+    modalTitle.innerHTML = "選ばれたのは...";
+  }
   resultColor.style.backgroundColor = color;
   resultText.innerHTML = text;
   modalMask.className = "mask open";
