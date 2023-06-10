@@ -22,6 +22,7 @@ const shareButton = document.getElementById("shareButton");
 const modalMask = document.getElementById("modalMask");
 const termsButton = document.getElementById("termsButton");
 const inputTitle = document.getElementById("inputTitle");
+const inputItems = document.getElementById("inputItems");
 
 if(mediaQuery.matches){
   radius = 150;
@@ -293,7 +294,6 @@ addButton.addEventListener("click", () => itemAddEvent());
 
 initButton.addEventListener("click", () => {
   if(confirm("ルーレットをリセットしますか？")){
-    const inputItems = document.getElementById("inputItems");
     while(inputItems.firstChild){
       inputItems.removeChild(inputItems.firstChild);
     }
@@ -311,3 +311,17 @@ shareButton.addEventListener("click", () => {
 });
 
 termsButton.addEventListener("click", () => termsModal());
+
+inputTitle.addEventListener("mouseover", () => {
+  const p = document.createElement("p");
+  p.innerHTML = "※入力は任意です";
+  p.style = "margin: 0; padding: 0; color: gray; font-size: small;";
+  inputItems.style.height = "350px";
+  inputText.style.marginTop = "6px";
+  inputTitle.after(p);
+  inputTitle.addEventListener("mouseleave", ()=> {
+    p.remove();
+    inputItems.style.height = "400px";
+    inputText.style.marginTop = "16px";
+  });
+});
