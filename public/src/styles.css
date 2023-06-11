@@ -157,11 +157,16 @@ canvas {
   font-size: medium;
 }
 
+.title-message {
+  margin: 0;
+  padding: 0;
+  height: 18px;
+}
+
 .action-button {
   display: flex;
   justify-content: flex-end;
   gap: 4px;
-  margin-top: 16px;
   width: 100%;
 }
 
@@ -237,7 +242,7 @@ canvas {
   align-items: center;
   border: 1px solid;
   width: 100%;
-  height: 400px;
+  height: 65%;
   margin-top: 24px;
   padding: 20px;
   overflow-y: scroll;

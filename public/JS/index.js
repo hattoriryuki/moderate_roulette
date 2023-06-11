@@ -313,15 +313,11 @@ shareButton.addEventListener("click", () => {
 termsButton.addEventListener("click", () => termsModal());
 
 inputTitle.addEventListener("mouseover", () => {
-  const p = document.createElement("p");
-  p.innerHTML = "※入力は任意です";
-  p.style = "margin: 0; padding: 0; color: gray; font-size: small;";
-  inputItems.style.height = "350px";
-  inputText.style.marginTop = "6px";
-  inputTitle.after(p);
+  const titleMessage = document.getElementById("titleMessage");
+  titleMessage.innerHTML = "※入力は任意です";
+  titleMessage.style = "margin: 0; padding: 0; color: gray; font-size: small;";
   inputTitle.addEventListener("mouseleave", ()=> {
-    p.remove();
-    inputItems.style.height = "400px";
-    inputText.style.marginTop = "16px";
+    titleMessage.innerHTML = "";
+    titleMessage.style = "height: 18px;";
   });
 });
