@@ -306,7 +306,15 @@ initButton.addEventListener("click", () => {
 
 shareButton.addEventListener("click", () => {
   const text = resultText.innerText;
-  const url = `http://twitter.com/share?url=https://moderate-roullet.web.app/&text=今回ルーレットで選ばれたのは、「 ${text} 」でした！&hashtags=ModerateRoullet`;
+  let shareContent;
+  if(inputTitle.value != ""){
+    shareContent = `${inputTitle.value}に`;
+  } else {
+    shareContent = "今回ルーレットで";
+  }
+  const url = `http://twitter.com/share?url=https://moderate-roullet.web.app/
+    &text=${shareContent}選ばれたのは、「 ${text} 」でした！
+    &hashtags=ModerateRoullet`;
   shareButton.setAttribute("href", url);
 });
 
