@@ -21,12 +21,14 @@ const initButton = document.getElementById("initButton");
 const shareButton = document.getElementById("shareButton");
 const modalMask = document.getElementById("modalMask");
 const termsButton = document.getElementById("termsButton");
+const inputTitle = document.getElementById("inputTitle");
+const inputItems = document.getElementById("inputItems");
 
 if(mediaQuery.matches){
   radius = 150;
   canvas.width = 350;
   canvas.height = 350;
-  fontSize = '15px serif'
+  fontSize = '15px serif';
 }
 ctx.translate(canvas.width / 2, canvas.height / 2);
 
@@ -224,7 +226,13 @@ function modalOpen(color, text){
   const modalClose = document.getElementById("modalClose");
   const resultColor = document.getElementById("resultColor");
   const resultText = document.getElementById("resultText");
+  const modalTitle = document.getElementById("modalTitle");
 
+  if(inputTitle.value != ""){
+    modalTitle.innerHTML = `${inputTitle.value}に選ばれたのは...`;
+  } else {
+    modalTitle.innerHTML = "選ばれたのは...";
+  }
   resultColor.style.backgroundColor = color;
   resultText.innerHTML = text;
   modalMask.className = "mask open";
@@ -279,19 +287,17 @@ stopButton.addEventListener("click", () => stopFlg = true);
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  itemAddEvent()
+  itemAddEvent();
 });
 
-addButton.addEventListener("click", () => {
-  itemAddEvent()
-});
+addButton.addEventListener("click", () => itemAddEvent());
 
 initButton.addEventListener("click", () => {
   if(confirm("ルーレットをリセットしますか？")){
-    const inputItems = document.getElementById("inputItems");
     while(inputItems.firstChild){
       inputItems.removeChild(inputItems.firstChild);
     }
+    inputTitle.value = "";
     data = [];
     itemCount = 0;
     drawRoullet(0);
@@ -300,10 +306,26 @@ initButton.addEventListener("click", () => {
 
 shareButton.addEventListener("click", () => {
   const text = resultText.innerText;
-  const url = `http://twitter.com/share?url=https://moderate-roullet.web.app/&text=今回ルーレットで選ばれたのは、「 ${text} 」でした！&hashtags=ModerateRoullet`;
+  let shareContent;
+  if(inputTitle.value != ""){
+    shareContent = `${inputTitle.value}に`;
+  } else {
+    shareContent = "今回ルーレットで";
+  }
+  const url = `http://twitter.com/share?url=https://moderate-roullet.web.app/
+    &text=${shareContent}選ばれたのは、「 ${text} 」でした！
+    &hashtags=ModerateRoullet`;
   shareButton.setAttribute("href", url);
 });
 
-termsButton.addEventListener("click", () => {
-  termsModal();
+termsButton.addEventListener("click", () => termsModal());
+
+inputTitle.addEventListener("mouseover", () => {
+  const titleMessage = document.getElementById("titleMessage");
+  titleMessage.innerHTML = "※入力は任意です";
+  titleMessage.style = "margin: 0; padding: 0; color: gray; font-size: small;";
+  inputTitle.addEventListener("mouseleave", ()=> {
+    titleMessage.innerHTML = "";
+    titleMessage.style = "height: 18px;";
+  });
 });
