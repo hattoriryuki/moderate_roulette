@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head prefix="og: http://ogp.me/ns#">
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-0WN0E0SL4Z"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -113,6 +112,15 @@
         <li>詳しくはお使いのブラウザの設定をご確認ください。以上</li>
       </ul>
     </div>
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js').then(reg => {
+          console.log('サービスワーカーを登録しました', reg);
+        }).catch(err => {
+          console.log('登録失敗', err);
+        });
+      }
+      </script>
     <script src="JS/index.js"></script>
   </body>
 </html>
