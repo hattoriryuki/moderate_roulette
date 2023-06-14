@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head prefix="og: http://ogp.me/ns#">
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-0WN0E0SL4Z"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -13,21 +12,30 @@
     
     <title>ModerateRoullet</title>
     <link rel="icon" href="img/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/public/images/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/public/images/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/public/images/icons/favicon-16x16.png">
+    <link rel="manifest" href="manifest.json">
+    <link rel="mask-icon" href="/public/images/icons/safari-pinned-tab.svg" color="#3cc1eb">
+    <link rel="shortcut icon" href="/public/images/icons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="/public/images/icons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
     <meta name="viewport" content="width=device-width,initial-scale=1" charset="UTF-8" />
     <meta property="og:url" content="https://moderate-roullet.web.app/">
     <meta property="og:title" content="Moderate Roullet">
     <meta property="og:description" content="日常のちょっとした迷いをルーレットで手軽に解決!">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://moderate-roullet.web.app/img/ogp.png">
+    <meta property="og:image" content="https://moderate-roullet.web.app/images/ogp.png">
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@ryuki_runteq_27" />
-    <link rel="stylesheet" href="src/styles.css">
+    <link rel="stylesheet" href="css/styles.css">
     <script src="https://kit.fontawesome.com/d208341c1b.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <header>
-      <img src="img/logo.png" class="logo-img">
-      <img src="img/title.png" class="title-img">
+      <img src="images/" class="logo-img">
+      <img src="images/title.png" class="title-img">
       <i class="fa-solid fa-bars hamburger-button"></i>
       <div class="hamburger-menu">
         <div class="header-menu">
@@ -104,6 +112,15 @@
         <li>詳しくはお使いのブラウザの設定をご確認ください。以上</li>
       </ul>
     </div>
-    <script src="JS/index.js"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js').then(reg => {
+          console.log('サービスワーカーを登録しました', reg);
+        }).catch(err => {
+          console.log('登録失敗', err);
+        });
+      }
+      </script>
+    <script src="js/index.js"></script>
   </body>
 </html>
