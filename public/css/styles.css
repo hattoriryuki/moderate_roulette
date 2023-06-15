@@ -295,6 +295,15 @@ canvas {
   color: #ef8686dd;
 }
 
+.install-button {
+  margin-top: 8px;
+  margin-left: auto;
+}
+
+.install-button > i {
+  color: rgb(119, 116, 116);
+}
+
 .mask {
   position: fixed;
   height: 100%;
