@@ -6,7 +6,6 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-0WN0E0SL4Z');
     </script>
     
@@ -118,7 +117,7 @@
     </div>
     <script>
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('service-worker.js').then(reg => {
+        navigator.serviceWorker.register('js/service-worker.js').then(reg => {
           console.log('サービスワーカーを登録しました', reg);
         }).catch(err => {
           console.log('登録失敗', err);
