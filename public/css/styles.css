@@ -134,7 +134,7 @@ input {
 }
 
 canvas {
-  margin: 10px auto;
+  margin: 0 auto;
 }
 
 .contents {
@@ -155,6 +155,7 @@ canvas {
   border: none;
   border-bottom: 1px solid;
   font-size: medium;
+  margin-top: 16px;
 }
 
 .title-message {
