@@ -335,8 +335,7 @@ inputTitle.addEventListener("mouseover", () => {
 window.addEventListener('beforeinstallprompt', function(event) {
   event.preventDefault();
   installPromptEvent = event;
-  installButton.disabled = false;
-  installButton.innerHTML = "アプリをインストールする";
+  installButton.hidden = false;
   return false;
 });
 
@@ -346,6 +345,7 @@ installButton.addEventListener("click", () => {
     installPromptEvent.userChoice.then(function(choiceResult){
       if (!(choiceResult.outcome === 'dismissed')){
         window.alert('Thank You!');
+        installButton.hidden = true;
       }
     });
     installPromptEvent = null;
