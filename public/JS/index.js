@@ -10,6 +10,7 @@ let addFlg = false;
 let itemCount = 0;
 let colorCount = 0;
 let itemColor;
+let installPromptEvent;
 let data = [];
 const mediaQuery = window.matchMedia('(max-width: 768px)');
 const startButton = document.getElementById("startButton");
@@ -23,6 +24,7 @@ const modalMask = document.getElementById("modalMask");
 const termsButton = document.getElementById("termsButton");
 const inputTitle = document.getElementById("inputTitle");
 const inputItems = document.getElementById("inputItems");
+const installButton = document.getElementById("installButton");
 
 if(mediaQuery.matches){
   radius = 150;
@@ -238,8 +240,8 @@ function modalOpen(color, text){
   modalMask.className = "mask open";
   modalContent.style.zIndex = 2;
   modalContent.style.display = "block";
-  modalMask.addEventListener("click", () => modalEndEvent());
-  modalClose.addEventListener("click", () => modalEndEvent());
+  modalMask.addEventListener("click", modalEndEvent);
+  modalClose.addEventListener("click", modalEndEvent);
   function modalEndEvent(){
     modalMask.className = "mask";
     modalContent.style.zIndex = -1;
@@ -266,8 +268,8 @@ function termsModal(){
   modalMask.className = "mask open";
   termsContent.style.zIndex = 10;
   termsContent.style.display = "block";
-  modalMask.addEventListener("click", () => termsCloseEvent());
-  termsClose.addEventListener("click", () => termsCloseEvent());
+  modalMask.addEventListener("click", termsCloseEvent);
+  termsClose.addEventListener("click", termsCloseEvent);
 
   function termsCloseEvent(){
     modalMask.className = "mask";
@@ -318,7 +320,7 @@ shareButton.addEventListener("click", () => {
   shareButton.setAttribute("href", url);
 });
 
-termsButton.addEventListener("click", () => termsModal());
+termsButton.addEventListener("click", termsModal);
 
 inputTitle.addEventListener("mouseover", () => {
   const titleMessage = document.getElementById("titleMessage");
@@ -328,4 +330,24 @@ inputTitle.addEventListener("mouseover", () => {
     titleMessage.innerHTML = "";
     titleMessage.style = "height: 18px;";
   });
+});
+
+window.addEventListener('beforeinstallprompt', function(event) {
+  event.preventDefault();
+  installPromptEvent = event;
+  installButton.disabled = false;
+  installButton.innerHTML = "アプリをインストールする";
+  return false;
+});
+
+installButton.addEventListener("click", () => {
+  if (installPromptEvent){
+    installPromptEvent.prompt();
+    installPromptEvent.userChoice.then(function(choiceResult){
+      if (!(choiceResult.outcome === 'dismissed')){
+        window.alert('Thank You!');
+      }
+    });
+    installPromptEvent = null;
+  }
 });
