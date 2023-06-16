@@ -1,4 +1,4 @@
-const cacheFiles = ['../index.html', 'index.js'];
+const cacheFiles = ['../index.html', './index.js'];
 const cacheName = 'v1';
 self.addEventListener('install', () => {
   caches.open(cacheName).then(cache => cache.addAll(cacheFiles));
