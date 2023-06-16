@@ -1,6 +1,6 @@
-const cacheFiles = ['index.html', 'JS/index.js'];
+const cacheFiles = ['../index.html', './index.js'];
 const cacheName = 'v1';
-self.addEventListener('install', event => {
+self.addEventListener('install', () => {
   caches.open(cacheName).then(cache => cache.addAll(cacheFiles));
 });
 self.addEventListener('fetch', event => {
@@ -10,6 +10,6 @@ self.addEventListener('fetch', event => {
         return response;
       });
     }).catch(function() {
-      return caches.match('img/logo.png');
+      return caches.match('images/logo.png');
     }));
 });

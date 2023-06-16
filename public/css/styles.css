@@ -134,7 +134,7 @@ input {
 }
 
 canvas {
-  margin: 10px auto;
+  margin: 0 auto;
 }
 
 .contents {
@@ -155,6 +155,7 @@ canvas {
   border: none;
   border-bottom: 1px solid;
   font-size: medium;
+  margin-top: 16px;
 }
 
 .title-message {
@@ -295,6 +296,15 @@ canvas {
   color: #ef8686dd;
 }
 
+.install-button {
+  margin-top: 8px;
+  margin-left: auto;
+}
+
+.install-button > i {
+  color: rgb(119, 116, 116);
+}
+
 .mask {
   position: fixed;
   height: 100%;
@@ -314,11 +324,10 @@ canvas {
 
 .modal-content {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: 20% auto;
+  top: 50%;
+  left: 50%;
+  margin: auto;
+  transform: translate(-50%, -50%);
   background-color: #f4f4f4;
   width: 30%;
   height: 30%;
