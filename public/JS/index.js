@@ -32,6 +32,17 @@ if(mediaQuery.matches){
   canvas.height = 350;
   fontSize = '15px serif';
 }
+
+const isIos = () => {
+  const userAgent = window.navigator.userAgent.toLowerCase();
+  return /iphone|ipad|ipod/.test( userAgent );
+}
+const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
+
+if (isIos() && !isInStandaloneMode()) {
+  window.alert("is iOS!!!");
+}
+
 ctx.translate(canvas.width / 2, canvas.height / 2);
 
 drawRoullet(0);
