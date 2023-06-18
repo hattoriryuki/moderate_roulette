@@ -41,8 +41,13 @@ const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.n
 
 if (isIos() && !isInStandaloneMode()) {
   const iosPrompt = document.getElementById("iosPrompt");
+  const promptClose = document.getElementById("promptClose");
   iosPrompt.style.display = "flex";
   iosPrompt.style.zIndex = 10;
+  promptClose.addEventListener("click", () => {
+    iosPrompt.style.display = "none";
+    iosPrompt.style.zIndex = 0;
+  });
 }
 
 ctx.translate(canvas.width / 2, canvas.height / 2);
