@@ -463,21 +463,21 @@ canvas {
   justify-content: space-between;
   padding: 8px;
   box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.35);
+  z-index: 10;
 }
 
 .ios-prompt:after {
   content: "";
   position: absolute;
   right: 0;
-  bottom: -20px;
+  bottom: -10px;
   left: 0;
   width: 0px;
   height: 0px;
   margin: auto;
   border-style: solid;
   border-color: white transparent transparent transparent;
-  border-width: 20px 20px 0 20px;
-  z-index: 2;
+  border-width: 10px 10px 0 10px;
 }
 
 .ios-logo {
@@ -487,6 +487,11 @@ canvas {
   border: 1px gray solid;
   border-radius: 20%;
   padding: 4px;
+}
+
+.ios-button-logo {
+  width: 15px;
+  height: 15px;
 }
 
 .ios-prompt-text {
