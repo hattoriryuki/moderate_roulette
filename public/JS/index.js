@@ -40,7 +40,9 @@ const isIos = () => {
 const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
 
 if (isIos() && !isInStandaloneMode()) {
-  window.alert("is iOS!!!");
+  const iosPrompt = document.getElementById("iosPrompt");
+  iosPrompt.style.display = "flex";
+  iosPrompt.style.zIndex = 10;
 }
 
 ctx.translate(canvas.width / 2, canvas.height / 2);
