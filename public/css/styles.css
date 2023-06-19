@@ -32,6 +32,7 @@ input {
   right: 64px;
   font-size: xx-large;
   color: white;
+  cursor: pointer;
 }
 
 .hamburger-menu {
@@ -59,10 +60,6 @@ input {
   border: 10px solid transparent;
   border-bottom: 12px solid #fff;
   z-index: 2;
-}
-
-.hamburger-button:hover {
-  cursor: pointer;
 }
 
 .hamburger-button:hover +.hamburger-menu {
@@ -167,15 +164,14 @@ canvas {
 .action-button {
   display: flex;
   justify-content: flex-end;
-  gap: 4px;
   width: 100%;
 }
 
 .action-button > button {
-  border-radius: 50%;
   margin-top: 5px;
-  width: 40px;
   cursor: pointer;
+  padding: 0;
+  margin: 0 6px;
 }
 
 .input-label {
@@ -560,6 +556,10 @@ canvas {
   .add-button:hover {
     color: #fbca7b;
   }
+  .action-button > button {
+    margin: 0 4px;
+  }
+
   .items {
     margin-top: 10px;
     padding: 10px;
