@@ -38,8 +38,12 @@ const isIos = () => {
   return /iphone|ipad|ipod/.test( userAgent );
 }
 const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
+const isSafari = () => {
+  const safari = window.navigator.userAgent;
+  return /Safari/.test(safari);
+}
 
-if (isIos() && !isInStandaloneMode()) {
+if (isIos() && isSafari() && !isInStandaloneMode()) {
   const iosPrompt = document.getElementById("iosPrompt");
   const promptClose = document.getElementById("promptClose");
   iosPrompt.style.display = "flex";
