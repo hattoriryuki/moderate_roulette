@@ -215,7 +215,11 @@ function createItemList(text, color){
     document.getElementById("inputItems").removeChild(deleteTarget);
     itemCount--;
     drawRoullet(0);
-    if(data.length < 2)startButton.disabled = true;
+    if(data.length < 2){
+      startButton.disabled = true;
+      startButton.style.color = "rgb(185, 183, 183)";
+      startButton.style.cursor = "default";
+    }
   });
   div.appendChild(paint);
   div.appendChild(p);
@@ -278,7 +282,11 @@ function itemAddEvent(){
     addFlg = true;
     getRandomColor();
     onClickAdd();
-    if(data.length > 1)startButton.disabled = false;
+    if(data.length > 1){
+      startButton.disabled = false;
+      startButton.style.color = "#67EB3C";
+      startButton.style.cursor = "pointer";
+    }
   } else{
     alert("何か入力してください");
   }

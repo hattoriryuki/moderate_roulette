@@ -169,7 +169,6 @@ canvas {
 
 .action-button > button {
   margin-top: 5px;
-  cursor: pointer;
   padding: 0;
   margin: 0 6px;
 }
@@ -193,6 +192,7 @@ canvas {
   border: none;
   font-size: xx-large;
   color: #fbca7b;
+  cursor: pointer;
 }
 
 .add-button:hover {
@@ -203,6 +203,7 @@ canvas {
   background-color: transparent;
   border: none;
   font-size: xx-large;
+  cursor: pointer;
 }
 
 .init-button:hover {
@@ -211,13 +212,9 @@ canvas {
 
 .start-button {
   background-color: transparent;
-  color: #67EB3C;
+  color: rgb(185, 183, 183);
   font-size: xx-large;
   border: none;
-}
-
-.start-button:hover {
-  color: #84ed61d2;;
 }
 
 .stop-button {
@@ -226,6 +223,7 @@ canvas {
   border: none;
   font-size: xx-large;
   display: none;
+  cursor: pointer;
 }
 
 .stop-button:hover {
