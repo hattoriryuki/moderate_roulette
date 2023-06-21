@@ -32,6 +32,28 @@ if(mediaQuery.matches){
   canvas.height = 350;
   fontSize = '15px serif';
 }
+
+const isIos = () => {
+  const userAgent = window.navigator.userAgent.toLowerCase();
+  return /iphone|ipad|ipod/.test( userAgent );
+}
+const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
+const isSafari = () => {
+  const safari = window.navigator.userAgent;
+  return /Safari/.test(safari);
+}
+
+if (isIos() && isSafari() && !isInStandaloneMode()) {
+  const iosPrompt = document.getElementById("iosPrompt");
+  const promptClose = document.getElementById("promptClose");
+  iosPrompt.style.display = "flex";
+  iosPrompt.style.zIndex = 10;
+  promptClose.addEventListener("click", () => {
+    iosPrompt.style.display = "none";
+    iosPrompt.style.zIndex = 0;
+  });
+}
+
 ctx.translate(canvas.width / 2, canvas.height / 2);
 
 drawRoullet(0);
@@ -193,7 +215,11 @@ function createItemList(text, color){
     document.getElementById("inputItems").removeChild(deleteTarget);
     itemCount--;
     drawRoullet(0);
-    if(data.length < 2)startButton.disabled = true;
+    if(data.length < 2){
+      startButton.disabled = true;
+      startButton.style.color = "rgb(185, 183, 183)";
+      startButton.style.cursor = "default";
+    }
   });
   div.appendChild(paint);
   div.appendChild(p);
@@ -256,7 +282,11 @@ function itemAddEvent(){
     addFlg = true;
     getRandomColor();
     onClickAdd();
-    if(data.length > 1)startButton.disabled = false;
+    if(data.length > 1){
+      startButton.disabled = false;
+      startButton.style.color = "#67EB3C";
+      startButton.style.cursor = "pointer";
+    }
   } else{
     alert("何か入力してください");
   }

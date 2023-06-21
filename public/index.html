@@ -115,6 +115,18 @@
         <li>詳しくはお使いのブラウザの設定をご確認ください。以上</li>
       </ul>
     </div>
+    <div class="ios-prompt" id="iosPrompt">
+      <img src="images/logo.png" alt="" class="ios-logo">
+      <div>
+        <p class="ios-propmt-text">
+          <img src="images/ios_button_logo.png" alt="" class="ios-button-logo">
+          をタップして<br>
+          「ホーム画面に追加」で<br>
+          アプリをインストールできます
+        </p>  
+      </div>
+      <button class="prompt-close" id="promptClose">X</button>
+    </div>
     <script>
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('js/service-worker.js').then(reg => {

@@ -32,6 +32,7 @@ input {
   right: 64px;
   font-size: xx-large;
   color: white;
+  cursor: pointer;
 }
 
 .hamburger-menu {
@@ -59,10 +60,6 @@ input {
   border: 10px solid transparent;
   border-bottom: 12px solid #fff;
   z-index: 2;
-}
-
-.hamburger-button:hover {
-  cursor: pointer;
 }
 
 .hamburger-button:hover +.hamburger-menu {
@@ -167,15 +164,13 @@ canvas {
 .action-button {
   display: flex;
   justify-content: flex-end;
-  gap: 4px;
   width: 100%;
 }
 
 .action-button > button {
-  border-radius: 50%;
   margin-top: 5px;
-  width: 40px;
-  cursor: pointer;
+  padding: 0;
+  margin: 0 6px;
 }
 
 .input-label {
@@ -197,6 +192,7 @@ canvas {
   border: none;
   font-size: xx-large;
   color: #fbca7b;
+  cursor: pointer;
 }
 
 .add-button:hover {
@@ -207,6 +203,7 @@ canvas {
   background-color: transparent;
   border: none;
   font-size: xx-large;
+  cursor: pointer;
 }
 
 .init-button:hover {
@@ -215,13 +212,9 @@ canvas {
 
 .start-button {
   background-color: transparent;
-  color: #67EB3C;
+  color: rgb(185, 183, 183);
   font-size: xx-large;
   border: none;
-}
-
-.start-button:hover {
-  color: #84ed61d2;;
 }
 
 .stop-button {
@@ -230,6 +223,7 @@ canvas {
   border: none;
   font-size: xx-large;
   display: none;
+  cursor: pointer;
 }
 
 .stop-button:hover {
@@ -452,6 +446,69 @@ canvas {
   padding: 0;
 }
 
+.ios-prompt {
+  position: fixed;
+  margin: auto;
+  left: 50%;
+  bottom: 16px;
+  transform: translate(-50%, 0);
+  background-color: white;
+  box-sizing: border-box;
+  display: none;
+  align-items: center;
+  width: 340px;
+  border-radius: 10px;
+  justify-content: space-between;
+  padding: 8px;
+  box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.35);
+  z-index: 0;
+}
+
+.ios-prompt:after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -10px;
+  left: 0;
+  width: 0px;
+  height: 0px;
+  margin: auto;
+  border-style: solid;
+  border-color: white transparent transparent transparent;
+  border-width: 10px 10px 0 10px;
+}
+
+.ios-logo {
+  box-sizing: border-box;
+  width: 60px;
+  height: 60px;
+  border: 1px gray solid;
+  border-radius: 20%;
+  padding: 4px;
+}
+
+.ios-button-logo {
+  width: 15px;
+  height: 15px;
+}
+
+.ios-prompt-text {
+  margin: 0;
+}
+
+.prompt-close {
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  top: 6px;
+  right: 6px;
+  background-color: rgb(179, 176, 176);
+  border: none;
+  color: white;
+  width: 15px;
+  height: 15px;
+}
+
 @media only screen and (max-width: 768px) {
   li {
     font-size: 12px;
@@ -496,6 +553,12 @@ canvas {
   }
   .add-button:hover {
     color: #fbca7b;
+  }
+  .input-label > input {
+    margin-right: 4px;
+  }
+  .action-button > button {
+    margin: 0 4px;
   }
   .items {
     margin-top: 10px;
