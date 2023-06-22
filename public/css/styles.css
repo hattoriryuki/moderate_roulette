@@ -123,6 +123,21 @@ input {
   text-decoration-color: rgb(180, 178, 178);
 }
 
+.flash-message {
+  background-color: rgba(253,232,232);
+  color: rgba(200,30,30); 
+  line-height: 30px; 
+  padding: 12px; 
+  height: 30px; 
+  font-size: 16px; 
+  border-top: red 4px solid;
+}
+
+.fa-circle-info {
+  color: rgba(200,30,30); 
+  margin-right: 8px;
+}
+
 .container {
   width: 100%;
   display: flex;
