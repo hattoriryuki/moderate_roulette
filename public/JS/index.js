@@ -308,6 +308,18 @@ function termsModal(){
   }
 }
 
+function openFlashMessage(word){
+  const flashMessage = document.getElementById("flashMessage");
+  const flashMessageText = document.getElementById("flashMessageText");
+  flashMessageText.innerText = word;
+  flashMessage.style.visibility = "visible";
+  setTimeout(closeFlashMessage, 3000);
+
+  function closeFlashMessage(){
+    flashMessage.style.visibility = "hidden";
+  }
+}
+
 startButton.addEventListener("click", () => {
   startButton.style.display = "none";
   stopButton.style.display = "block";
