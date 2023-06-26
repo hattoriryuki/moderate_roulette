@@ -337,7 +337,7 @@ form.addEventListener("submit", (e) => {
 addButton.addEventListener("click", () => itemAddEvent());
 
 initButton.addEventListener("click", () => {
-  if(confirm("ルーレットをリセットしますか？")){
+  if(confirm("ルーレットを初期化しますか？")){
     while(inputItems.firstChild){
       inputItems.removeChild(inputItems.firstChild);
     }
@@ -368,10 +368,7 @@ inputTitle.addEventListener("mouseover", () => {
   const titleMessage = document.getElementById("titleMessage");
   titleMessage.innerHTML = "※入力は任意です";
   titleMessage.style = "margin: 0; padding: 0; color: gray; font-size: small;";
-  inputTitle.addEventListener("mouseleave", ()=> {
-    titleMessage.innerHTML = "";
-    titleMessage.style = "height: 18px;";
-  });
+  inputTitle.addEventListener("mouseleave", () => titleMessage.innerHTML = "");
 });
 
 window.addEventListener('beforeinstallprompt', function(event) {
