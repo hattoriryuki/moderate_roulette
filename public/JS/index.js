@@ -111,7 +111,7 @@ function runRoullet(){
     if(count < 200){
       deg_counter -= count / 8;
       drawRoullet(deg_counter);
-    }else{
+    } else{
       count = 0;
       clearInterval(timer);
       stopFlg = false;
