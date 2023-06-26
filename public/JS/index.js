@@ -144,7 +144,7 @@ function onClickAdd(){
   let color = itemColor;
   let judge = data.some(e => e.name === text);
   if(judge){
-    alert("同じアイテムは登録できません");
+    openFlashMessage("同じアイテムは登録できません");
   } else{
     data.push({name: text, color: color});
     inputText.value = "";
@@ -189,7 +189,7 @@ function createItemList(text, color){
     } else{
       const editedText = editItem.children[2].value;
       if (editedText === ""){
-        alert("未入力の項目があります");
+        openFlashMessage("編集後のアイテムを入力してください");    
       } else{
         editFlg = 0;
         editButton.removeChild(confirmIcon);
@@ -288,7 +288,7 @@ function itemAddEvent(){
       startButton.style.cursor = "pointer";
     }
   } else{
-    alert("何か入力してください");
+    openFlashMessage("空白は登録できません");
   }
 }
 
