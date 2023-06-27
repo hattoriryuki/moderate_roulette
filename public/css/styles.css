@@ -69,6 +69,7 @@ input {
 
 .hamburger-menu:hover {
   visibility: visible;
+  opacity: 1;
 }
 
 .header-menu {
