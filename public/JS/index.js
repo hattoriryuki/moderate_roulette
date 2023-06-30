@@ -338,7 +338,7 @@ form.addEventListener("submit", (e) => {
   itemAddEvent();
 });
 
-addButton.addEventListener("click", () => itemAddEvent());
+addButton.addEventListener("click", itemAddEvent);
 
 initButton.addEventListener("click", () => {
   if(confirm("ルーレットを初期化しますか？")){
