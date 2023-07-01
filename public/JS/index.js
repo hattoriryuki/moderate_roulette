@@ -204,7 +204,21 @@ function createItemList(text, color){
           }    
         }
       });
-    } 
+    } else{
+      const editedText = editItem.children[2].value;
+      if (editedText === ""){
+        openFlashMessage("編集後のアイテムを入力してください");    
+      } else{
+        editFlg = 0;
+        editButton.removeChild(confirmIcon);
+        editButton.appendChild(editIcon);
+        editItem.children[2].remove();
+        editTarget.hidden = false;
+        let index = data.findIndex(e => e.name === editTarget.innerText);
+        data[index].name = editedText;
+        editTarget.innerText = editedText;
+      }    
+    }
   });
 
   const deleteButton = document.createElement("button");
