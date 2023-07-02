@@ -43,7 +43,7 @@ const isSafari = () => {
   return /Safari/.test(safari);
 }
 
-if (isIos() && isSafari() && !isInStandaloneMode()) {
+if(isIos() && isSafari() && !isInStandaloneMode()) {
   const iosPrompt = document.getElementById("iosPrompt");
   const promptClose = document.getElementById("promptClose");
   iosPrompt.style.display = "flex";
@@ -176,7 +176,7 @@ function createItemList(text, color){
   editButton.addEventListener("click", () => {
     const editItem = editButton.parentNode;
     const editTarget = editItem.children[1];
-    if (editFlg === 0){
+    if(editFlg === 0){
       editFlg = 1;
       editButton.removeChild(editIcon);
       editButton.appendChild(confirmIcon);
@@ -189,24 +189,15 @@ function createItemList(text, color){
       editItem.insertBefore(input, editButton);
       input.addEventListener("keydown", (e) => {
         if(e.key === 'Enter'){
-          const editedText = editItem.children[2].value;
-          if (editedText === ""){
-            openFlashMessage("編集後のアイテムを入力してください");    
-          } else{
-            editFlg = 0;
-            editButton.removeChild(confirmIcon);
-            editButton.appendChild(editIcon);
-            editItem.children[2].remove();
-            editTarget.hidden = false;
-            let index = data.findIndex(e => e.name === editTarget.innerText);
-            data[index].name = editedText;
-            editTarget.innerText = editedText;
-          }    
+          editedEvent();
         }
       });
     } else{
+      editedEvent();
+    }
+    function editedEvent(){
       const editedText = editItem.children[2].value;
-      if (editedText === ""){
+      if(editedText === ""){
         openFlashMessage("編集後のアイテムを入力してください");    
       } else{
         editFlg = 0;
@@ -217,10 +208,9 @@ function createItemList(text, color){
         let index = data.findIndex(e => e.name === editTarget.innerText);
         data[index].name = editedText;
         editTarget.innerText = editedText;
-      }    
+      }
     }
   });
-
   const deleteButton = document.createElement("button");
   const deleteIcon = document.createElement("i");
   deleteIcon.className = "fa-regular fa-trash-can";
@@ -371,7 +361,7 @@ shareButton.addEventListener("click", () => {
   let shareContent;
   if(inputTitle.value != ""){
     shareContent = `${inputTitle.value}に`;
-  } else {
+  } else{
     shareContent = "今回ルーレットで";
   }
   const url = `http://twitter.com/share?url=https://moderate-roullet.web.app/
@@ -397,10 +387,10 @@ window.addEventListener('beforeinstallprompt', function(event) {
 });
 
 installButton.addEventListener("click", () => {
-  if (installPromptEvent){
+  if(installPromptEvent){
     installPromptEvent.prompt();
     installPromptEvent.userChoice.then(function(choiceResult){
-      if (!(choiceResult.outcome === 'dismissed')){
+      if(!(choiceResult.outcome === 'dismissed')){
         window.alert('Thank You!');
         installButton.hidden = true;
       }
