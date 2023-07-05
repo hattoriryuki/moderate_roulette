@@ -43,7 +43,7 @@ const isSafari = () => {
   return /Safari/.test(safari);
 }
 
-if (isIos() && isSafari() && !isInStandaloneMode()) {
+if(isIos() && isSafari() && !isInStandaloneMode()) {
   const iosPrompt = document.getElementById("iosPrompt");
   const promptClose = document.getElementById("promptClose");
   iosPrompt.style.display = "flex";
@@ -111,7 +111,7 @@ function runRoullet(){
     if(count < 200){
       deg_counter -= count / 8;
       drawRoullet(deg_counter);
-    }else{
+    } else{
       count = 0;
       clearInterval(timer);
       stopFlg = false;
@@ -144,7 +144,7 @@ function onClickAdd(){
   let color = itemColor;
   let judge = data.some(e => e.name === text);
   if(judge){
-    alert("同じアイテムは登録できません");
+    openFlashMessage("同じアイテムは登録できません");
   } else{
     data.push({name: text, color: color});
     inputText.value = "";
@@ -176,20 +176,29 @@ function createItemList(text, color){
   editButton.addEventListener("click", () => {
     const editItem = editButton.parentNode;
     const editTarget = editItem.children[1];
-    if (editFlg === 0){
+    if(editFlg === 0){
       editFlg = 1;
       editButton.removeChild(editIcon);
       editButton.appendChild(confirmIcon);
       const input = document.createElement("input");
       input.type = "text";
       input.value = editTarget.innerText;
+      input.id = "edit-form";
       input.className = "item-name";
       editTarget.hidden = true;
       editItem.insertBefore(input, editButton);
+      input.addEventListener("keydown", (e) => {
+        if(e.key === 'Enter'){
+          editedEvent();
+        }
+      });
     } else{
+      editedEvent();
+    }
+    function editedEvent(){
       const editedText = editItem.children[2].value;
-      if (editedText === ""){
-        alert("未入力の項目があります");
+      if(editedText === ""){
+        openFlashMessage("編集後のアイテムを入力してください");    
       } else{
         editFlg = 0;
         editButton.removeChild(confirmIcon);
@@ -202,7 +211,6 @@ function createItemList(text, color){
       }
     }
   });
-
   const deleteButton = document.createElement("button");
   const deleteIcon = document.createElement("i");
   deleteIcon.className = "fa-regular fa-trash-can";
@@ -288,7 +296,7 @@ function itemAddEvent(){
       startButton.style.cursor = "pointer";
     }
   } else{
-    alert("何か入力してください");
+    openFlashMessage("空白は登録できません");
   }
 }
 
@@ -308,6 +316,18 @@ function termsModal(){
   }
 }
 
+function openFlashMessage(word){
+  const flashMessage = document.getElementById("flashMessage");
+  const flashMessageText = document.getElementById("flashMessageText");
+  flashMessageText.innerText = word;
+  flashMessage.style.visibility = "visible";
+  setTimeout(closeFlashMessage, 3000);
+
+  function closeFlashMessage(){
+    flashMessage.style.visibility = "hidden";
+  }
+}
+
 startButton.addEventListener("click", () => {
   startButton.style.display = "none";
   stopButton.style.display = "block";
@@ -322,10 +342,10 @@ form.addEventListener("submit", (e) => {
   itemAddEvent();
 });
 
-addButton.addEventListener("click", () => itemAddEvent());
+addButton.addEventListener("click", itemAddEvent);
 
 initButton.addEventListener("click", () => {
-  if(confirm("ルーレットをリセットしますか？")){
+  if(confirm("ルーレットを初期化しますか？")){
     while(inputItems.firstChild){
       inputItems.removeChild(inputItems.firstChild);
     }
@@ -341,7 +361,7 @@ shareButton.addEventListener("click", () => {
   let shareContent;
   if(inputTitle.value != ""){
     shareContent = `${inputTitle.value}に`;
-  } else {
+  } else{
     shareContent = "今回ルーレットで";
   }
   const url = `http://twitter.com/share?url=https://moderate-roullet.web.app/
@@ -356,10 +376,7 @@ inputTitle.addEventListener("mouseover", () => {
   const titleMessage = document.getElementById("titleMessage");
   titleMessage.innerHTML = "※入力は任意です";
   titleMessage.style = "margin: 0; padding: 0; color: gray; font-size: small;";
-  inputTitle.addEventListener("mouseleave", ()=> {
-    titleMessage.innerHTML = "";
-    titleMessage.style = "height: 18px;";
-  });
+  inputTitle.addEventListener("mouseleave", () => titleMessage.innerHTML = "");
 });
 
 window.addEventListener('beforeinstallprompt', function(event) {
@@ -370,10 +387,10 @@ window.addEventListener('beforeinstallprompt', function(event) {
 });
 
 installButton.addEventListener("click", () => {
-  if (installPromptEvent){
+  if(installPromptEvent){
     installPromptEvent.prompt();
     installPromptEvent.userChoice.then(function(choiceResult){
-      if (!(choiceResult.outcome === 'dismissed')){
+      if(!(choiceResult.outcome === 'dismissed')){
         window.alert('Thank You!');
         installButton.hidden = true;
       }

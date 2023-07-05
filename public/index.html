@@ -49,6 +49,10 @@
         <button class="terms-button" id="termsButton">プライバシーポリシー</button>  
       </div>
     </header>
+    <div class="flash-message" id="flashMessage">
+      <i class="fa-solid fa-circle-info"></i>
+      <p id="flashMessageText"></p>
+    </div>
     <div class="container" id="container">
       <canvas id="canvas" width="500" height="500">
         Canvas not supported.
@@ -58,8 +62,8 @@
           <input type="text" class="input-title" id="inputTitle" placeholder="Title" autocomplete="off">
           <p id="titleMessage" class="title-message"></p>
           <div class="action-button">
-            <form id="form" class="input-label">
-              <input  type="text" placeholder="Label" id="inputText" autocomplete="off">
+            <form class="input-label" id="form">
+              <input type="text" placeholder="Item" id="inputText" autocomplete="off">
             </form>
             <button class="add-button" id="addButton">
               <i class="fa-solid fa-plus"></i>
@@ -86,7 +90,9 @@
     <div class="modal-content" id="modalContent">
       <div class="modal-header">
         <p>結果</p>
-        <button class="modal-close" id="modalClose">x</button>  
+        <button class="modal-close" id="modalClose">
+          <i class="fa-solid fa-xmark"></i>
+        </button>  
       </div>
       <p id="modalTitle"></p>
       <div class="result">
@@ -106,7 +112,9 @@
       <ul>
         <div class="terms-title">
           <li >プライバシーポリシー</li>
-          <button class="terms-close" id="termsClose">X</button>  
+          <button class="terms-close" id="termsClose">
+            <i class="fa-solid fa-xmark"></i>
+          </button>  
         </div>
         <li>当サイトは、お客様のアクセス解析のために、「Googleアナリティクス」を利用しています。</li>
         <li>Googleアナリティクスは、トラフィックデータの収集のためにCookieを使用しています。</li>
@@ -125,7 +133,9 @@
           アプリをインストールできます
         </p>  
       </div>
-      <button class="prompt-close" id="promptClose">X</button>
+      <button class="prompt-close" id="promptClose">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
     </div>
     <script>
       if ('serviceWorker' in navigator) {
