@@ -381,9 +381,15 @@ inputTitle.addEventListener("mouseover", () => {
 
 function howToModalOpen() {
   const howToModal = document.getElementById("howToModal");
+  const howToClose = document.getElementById("howToClose");
   howToModal.style.zIndex = 99;
   howToModal.style.display = 'block';
   modalMask.className = 'mask open';
+  howToClose.addEventListener('click', () => {
+    howToModal.style.zIndex = -1;
+    howToModal.style.display = 'none';
+    modalMask.className = 'mask';  
+  });
 }
 
 window.addEventListener('beforeinstallprompt', function(event) {
