@@ -53,7 +53,7 @@ if(isIos() && isSafari() && !isInStandaloneMode()) {
     iosPrompt.style.zIndex = 0;
   });
 }
-
+window.onload = setTimeout(howToModalOpen, 500);
 ctx.translate(canvas.width / 2, canvas.height / 2);
 
 drawRoullet(0);
@@ -378,6 +378,13 @@ inputTitle.addEventListener("mouseover", () => {
   titleMessage.style = "margin: 0; padding: 0; color: gray; font-size: small;";
   inputTitle.addEventListener("mouseleave", () => titleMessage.innerHTML = "");
 });
+
+function howToModalOpen() {
+  const howToModal = document.getElementById("howToModal");
+  howToModal.style.zIndex = 99;
+  howToModal.style.display = 'block';
+  modalMask.className = 'mask open';
+}
 
 window.addEventListener('beforeinstallprompt', function(event) {
   event.preventDefault();
