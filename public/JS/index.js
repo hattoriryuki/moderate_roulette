@@ -382,14 +382,24 @@ inputTitle.addEventListener("mouseover", () => {
 function howToModalOpen() {
   const howToModal = document.getElementById("howToModal");
   const howToClose = document.getElementById("howToClose");
-  howToModal.style.zIndex = 99;
+  const howToOpen = document.getElementById("howToOpen");
+  howToModal.style.zIndex = 10;
   howToModal.style.display = 'block';
   modalMask.className = 'mask open';
   howToClose.addEventListener('click', () => {
+    howToModalClose();
+    modalMask.className = 'mask';
+  });
+  howToOpen.addEventListener('click', () => {
+    howToModalClose();
+    inputTitle.style.position = 'relative';
+    inputTitle.style.zIndex = 99;  
+  });
+
+  function howToModalClose() {
     howToModal.style.zIndex = -1;
     howToModal.style.display = 'none';
-    modalMask.className = 'mask';  
-  });
+  }
 }
 
 window.addEventListener('beforeinstallprompt', function(event) {
