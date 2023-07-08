@@ -391,9 +391,32 @@ function howToModalOpen() {
     modalMask.className = 'mask';
   });
   howToOpen.addEventListener('click', () => {
+    const inputArea = document.getElementById("inputArea");
     howToModalClose();
     inputTitle.style.position = 'relative';
-    inputTitle.style.zIndex = 99;  
+    inputTitle.style.zIndex = 99; 
+    
+    const div = document.createElement('div');
+    const triangle = document.createElement('div');
+    const title = document.createElement('div');
+    const content = document.createElement('div');
+    const buttonArea = document.createElement('div');
+    const button = document.createElement('button');
+    div.style = 'position: absolute; top: 10%; right: 50%; background-color: white; z-index: 19; padding: 10px;';
+    triangle.style = 'position: absolute; width: 0; height: 0; border-top: 5px solid transparent; border-left: 20px solid white; border-bottom: 6px solid transparent; top: 70px; right: -20px; z-index: 20;';
+    title.style = 'font-weight: bolder;';
+    title.innerHTML = '1. タイトルを入力する（任意です）';
+    content.innerHTML = 'ルーレットで決めたいテーマを入力してください<br>（例）今日の夜ご飯';
+    buttonArea.style = 'display: flex; justify-content: flex-end; margin-top: 20px;';
+    button.style = 'background: none; color: #3CC1EB; border: 1px rgb(200, 198, 198) solid; border-radius: 8px; font-weight: bold;';
+    button.innerHTML = '次へ';
+
+    div.appendChild(triangle);
+    div.appendChild(title);
+    div.appendChild(content);
+    buttonArea.appendChild(button);
+    div.appendChild(buttonArea);
+    inputArea.prepend(div);
   });
 
   function howToModalClose() {
