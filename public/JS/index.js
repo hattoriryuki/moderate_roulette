@@ -9,6 +9,7 @@ let stopFlg = false;
 let addFlg = false;
 let itemCount = 0;
 let colorCount = 0;
+let howToPageNum = 1;
 let itemColor;
 let installPromptEvent;
 let data = [];
@@ -391,11 +392,37 @@ function howToModalOpen() {
     modalMask.className = 'mask';
   });
   howToOpen.addEventListener('click', () => {
-    const inputArea = document.getElementById("inputArea");
     howToModalClose();
     inputTitle.style.position = 'relative';
     inputTitle.style.zIndex = 99; 
-    
+    howToEvent(1);
+  });
+
+  function howToModalClose() {
+    howToModal.style.zIndex = -1;
+    howToModal.style.display = 'none';
+  }
+
+  function howToEvent(num) {
+    let thisTimeTitle;
+    let thisTimeContent;
+
+    switch(true){
+      case num === 1:
+        thisTimeTitle = '1. タイトルを入力する（任意です）';
+        thisTimeContent = 'ルーレットで決めたいテーマを入力してください<br>（例）今日の夜ご飯';
+        break;
+      case num === 2:
+        thisTimeTitle = '2. アイテムを入力する';
+        thisTimeContent = 'ルーレットで決めたい候補を複数入力してください<br>※Enterキーでアイテムを登録できます<br>（例）マクドナルド';
+        break;
+      case num === 3:
+        thisTimeTitle = '3. タイトルを入力する（任意です）';
+        thisTimeContent = 'ルーレットで決めたいテーマを入力してください<br>（例）今日の夜ご飯';
+        break;
+      default:
+        break;
+    }
     const div = document.createElement('div');
     const triangle = document.createElement('div');
     const title = document.createElement('div');
@@ -403,13 +430,15 @@ function howToModalOpen() {
     const buttonArea = document.createElement('div');
     const button = document.createElement('button');
     div.style = 'position: absolute; top: 10%; right: 50%; background-color: white; z-index: 19; padding: 10px;';
+    div.id = 'howToContent';
     triangle.style = 'position: absolute; width: 0; height: 0; border-top: 5px solid transparent; border-left: 20px solid white; border-bottom: 6px solid transparent; top: 70px; right: -20px; z-index: 20;';
     title.style = 'font-weight: bolder;';
-    title.innerHTML = '1. タイトルを入力する（任意です）';
-    content.innerHTML = 'ルーレットで決めたいテーマを入力してください<br>（例）今日の夜ご飯';
+    title.innerHTML = thisTimeTitle;
+    content.innerHTML = thisTimeContent;
     buttonArea.style = 'display: flex; justify-content: flex-end; margin-top: 20px;';
     button.style = 'background: none; color: #3CC1EB; border: 1px rgb(200, 198, 198) solid; border-radius: 8px; font-weight: bold;';
     button.innerHTML = '次へ';
+    button.id = 'howToNextButton';
 
     div.appendChild(triangle);
     div.appendChild(title);
@@ -417,11 +446,14 @@ function howToModalOpen() {
     buttonArea.appendChild(button);
     div.appendChild(buttonArea);
     inputArea.prepend(div);
-  });
 
-  function howToModalClose() {
-    howToModal.style.zIndex = -1;
-    howToModal.style.display = 'none';
+    const howToNextButton = document.getElementById('howToNextButton');
+    howToNextButton.addEventListener('click', () => {
+      const howToContent = document.getElementById('howToContent');
+      howToContent.remove();
+      howToPageNum++;
+      howToEvent(howToPageNum);
+    });
   }
 }
 
