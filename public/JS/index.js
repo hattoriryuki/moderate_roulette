@@ -277,13 +277,13 @@ function modalOpen(color, text){
   modalContent.style.display = "block";
   modalMask.addEventListener("click", modalEndEvent);
   modalClose.addEventListener("click", modalEndEvent);
-  function modalEndEvent(){
-    modalMask.className = "mask";
-    modalContent.style.zIndex = -1;
-    modalContent.style.display = "none";
-    startButton.style.display = "block";
-    stopButton.style.display = "none";
-  }
+}
+function modalEndEvent(){
+  modalMask.className = "mask";
+  modalContent.style.zIndex = -1;
+  modalContent.style.display = "none";
+  startButton.style.display = "block";
+  stopButton.style.display = "none";
 }
 
 function itemAddEvent(){
@@ -441,11 +441,17 @@ function howToEvent(num) {
       target = modalContent;
       target.style.display = 'block';
       startButton.style.display = 'block';
+      startButton.style.color = "rgb(185, 183, 183)";
       stopButton.style.display = 'none';
       thisTimeTitle = '5. 判定結果を確認します';
       thisTimeContent = 'Twitterマークで結果をシェアできますので、<br>拡散いただけますと幸いです';
       top = 40;
       right = 68;
+      break;
+    case num === 6:
+      modalEndEvent();
+      howToEndEvent();
+      howToPageNum = 0;
       break;
     default:
       break;
@@ -484,13 +490,17 @@ function howToEvent(num) {
 
   const howToNextButton = document.getElementById('howToNextButton');
   howToNextButton.addEventListener('click', () => {
+    howToEndEvent();
+    howToPageNum++;
+    howToEvent(howToPageNum);
+  });
+
+  function howToEndEvent() {
     const howToContent = document.getElementById('howToContent');
     howToContent.remove();
     target.style.position = 'static';
     target.style.zIndex = 1;
-    howToPageNum++;
-    howToEvent(howToPageNum);
-  });
+  }
 }
 
 window.addEventListener('beforeinstallprompt', function(event) {
