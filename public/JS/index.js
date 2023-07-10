@@ -437,6 +437,16 @@ function howToEvent(num) {
       thisTimeContent = '任意のタイミングで押すとルーレットの回転が止まり、<br>判定結果が表示されます';
       right = 11;
       break;
+    case num === 5:
+      target = modalContent;
+      target.style.display = 'block';
+      startButton.style.display = 'block';
+      stopButton.style.display = 'none';
+      thisTimeTitle = '5. 判定結果を確認します';
+      thisTimeContent = 'Twitterマークで結果をシェアできますので、<br>拡散いただけますと幸いです';
+      top = 40;
+      right = 68;
+      break;
     default:
       break;
   }
@@ -455,6 +465,7 @@ function howToEvent(num) {
   buttonArea.style = 'display: flex; justify-content: flex-end; margin-top: 20px;';
   button.style = 'background: none; color: #3CC1EB; border: 1px rgb(200, 198, 198) solid; border-radius: 8px; font-weight: bold;';
   button.innerHTML = '次へ';
+  if(num === 5) button.innerHTML = '終了';
   button.id = 'howToNextButton';
 
   div.appendChild(triangle);
@@ -466,6 +477,10 @@ function howToEvent(num) {
 
   target.style.position = 'relative';
   target.style.zIndex = 99; 
+  if(num === 5){
+    target.style.position = 'absolute';
+    modalOpen('red', 'Test');
+  }
 
   const howToNextButton = document.getElementById('howToNextButton');
   howToNextButton.addEventListener('click', () => {
