@@ -158,6 +158,8 @@ canvas {
   align-items: start;
 }
 
+
+
 .input-area {
   width: 100%;
 }
@@ -356,6 +358,43 @@ canvas {
   border-radius: 8px;
   padding: 4px;
   cursor: pointer;
+}
+
+.how-to-use-modal {
+  position: absolute;
+  background-color: white; 
+  z-index: 19;
+  padding: 10px;
+}
+
+.how-to-use-triangle {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-left: 20px solid white;
+  border-bottom: 6px solid transparent;
+  top: 70px;
+  right: -20px;
+  z-index: 20;
+}
+
+.how-to-use-title {
+  font-weight: bolder;
+}
+
+.how-to-use-button-area {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.how-to-use-button {
+  background: none;
+  color: #3CC1EB;
+  border: 1px rgb(200, 198, 198) solid;
+  border-radius: 8px;
+  font-weight: bold;
 }
 
 .mask {
