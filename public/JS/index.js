@@ -429,6 +429,13 @@ function howToEvent(num) {
       thisTimeContent = 'アイテムが２個以上登録されると<br>スタートボタンがアクティブ(緑色)になります';
       right = 11;
       break;
+    case num === 4:
+      target = document.getElementById('stopButton');
+      target.style.display = 'block';
+      startButton.style.display = 'none';
+      thisTimeTitle = '4. ストップボタンを押す';
+      thisTimeContent = '任意のタイミングで押すとルーレットの回転が止まり、<br>判定結果が表示されます';
+      right = 11;
     default:
       break;
   }
