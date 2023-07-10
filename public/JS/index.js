@@ -407,6 +407,7 @@ function howToEvent(num) {
   let thisTimeTitle;
   let thisTimeContent;
   let top;
+  let right = 50;
 
   switch(true){
     case num === 1:
@@ -422,8 +423,11 @@ function howToEvent(num) {
       top = 18;
       break;
     case num === 3:
-      thisTimeTitle = '3. タイトルを入力する（任意です）';
-      thisTimeContent = 'ルーレットで決めたいテーマを入力してください<br>（例）今日の夜ご飯';
+      target = document.getElementById('startButton');
+      target.style.color = '#67EB3C';
+      thisTimeTitle = '3. スタートボタンを押す';
+      thisTimeContent = 'アイテムが２個以上登録されると<br>スタートボタンがアクティブ(緑色)になります';
+      right = 11;
       break;
     default:
       break;
@@ -434,7 +438,7 @@ function howToEvent(num) {
   const content = document.createElement('div');
   const buttonArea = document.createElement('div');
   const button = document.createElement('button');
-  div.style = `position: absolute; top: ${top}%; right: 50%; background-color: white; z-index: 19; padding: 10px;`;
+  div.style = `position: absolute; top: ${top}%; right: ${right}%; background-color: white; z-index: 19; padding: 10px;`;
   div.id = 'howToContent';
   triangle.style = 'position: absolute; width: 0; height: 0; border-top: 5px solid transparent; border-left: 20px solid white; border-bottom: 6px solid transparent; top: 70px; right: -20px; z-index: 20;';
   title.style = 'font-weight: bolder;';
@@ -465,7 +469,6 @@ function howToEvent(num) {
     howToEvent(howToPageNum);
   });
 }
-
 
 window.addEventListener('beforeinstallprompt', function(event) {
   event.preventDefault();
