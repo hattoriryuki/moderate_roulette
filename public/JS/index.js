@@ -411,31 +411,32 @@ function howToEvent(num) {
 
   switch(true){
     case num === 1:
-      target = document.getElementById('inputTitle');
+      target = inputTitle;
       thisTimeTitle = '1. タイトルを入力する（任意です）';
       thisTimeContent = 'ルーレットで決めたいテーマを入力してください<br>（例）今日の夜ご飯';
       top = 10;
       break;
     case num === 2:
-      target = document.getElementById('inputText');
+      target = inputText;
       thisTimeTitle = '2. アイテムを入力する';
       thisTimeContent = 'ルーレットで決めたい候補を複数入力してください<br>※Enterキーでアイテムを登録できます<br>（例）マクドナルド';
       top = 18;
       break;
     case num === 3:
-      target = document.getElementById('startButton');
+      target = startButton;
       target.style.color = '#67EB3C';
       thisTimeTitle = '3. スタートボタンを押す';
       thisTimeContent = 'アイテムが２個以上登録されると<br>スタートボタンがアクティブ(緑色)になります';
       right = 11;
       break;
     case num === 4:
-      target = document.getElementById('stopButton');
+      target = stopButton;
       target.style.display = 'block';
       startButton.style.display = 'none';
       thisTimeTitle = '4. ストップボタンを押す';
       thisTimeContent = '任意のタイミングで押すとルーレットの回転が止まり、<br>判定結果が表示されます';
       right = 11;
+      break;
     default:
       break;
   }
