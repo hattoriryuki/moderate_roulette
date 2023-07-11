@@ -427,7 +427,7 @@ canvas {
   transform: translate(-50%, -50%);
   background-color: #f4f4f4;
   width: 30%;
-  height: 30%;
+  height: 200px;
   box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2),0 7px 20px 0 rgba(0,0,0,0.17);
   text-align: center;
   transition: all .5s;

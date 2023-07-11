@@ -26,6 +26,7 @@ const termsButton = document.getElementById("termsButton");
 const inputTitle = document.getElementById("inputTitle");
 const inputItems = document.getElementById("inputItems");
 const installButton = document.getElementById("installButton");
+const howToUse = document.getElementById("howToUse");
 
 if(mediaQuery.matches){
   radius = 150;
@@ -380,6 +381,13 @@ inputTitle.addEventListener("mouseover", () => {
   inputTitle.addEventListener("mouseleave", () => titleMessage.innerHTML = "");
 });
 
+howToUse.addEventListener('click', () => {
+  setTimeout(() => {
+    howToEvent(1);
+    modalMask.classList = 'mask open';
+  }, 500);
+});
+
 function howToModalOpen() {
   const howToModal = document.getElementById("howToModal");
   const howToClose = document.getElementById("howToClose");
@@ -450,9 +458,8 @@ function howToEvent(num) {
       break;
     case num === 6:
       modalEndEvent();
-      howToEndEvent();
-      howToPageNum = 0;
-      break;
+      howToPageNum = 1;
+      return;
     default:
       break;
   }
