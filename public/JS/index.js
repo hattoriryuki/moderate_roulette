@@ -497,19 +497,33 @@ function howToEvent(num) {
     target.style.position = 'absolute';
     modalOpen('red', 'Test');
   }
-
+  
   const howToNextButton = document.getElementById('howToNextButton');
   howToNextButton.addEventListener('click', () => {
     howToEndEvent();
     howToPageNum++;
     howToEvent(howToPageNum);
   });
+  modalMask.onclick = () => howToCancelEvent();
 
   function howToEndEvent() {
     const howToContent = document.getElementById('howToContent');
     howToContent.remove();
     target.style.position = 'static';
     target.style.zIndex = 1;
+  }
+
+  function howToCancelEvent() {
+    howToEndEvent();
+    if(num === 3 || num === 4){
+      stopButton.style.display = 'none';
+      startButton.style.color = 'rgb(185, 183, 183)';
+      startButton.style.display = 'block';
+    } else if(num === 5){
+      target.style.position = 'absolute';
+    }
+    modalMask.classList = 'mask';
+    howToPageNum = 1;
   }
 }
 
