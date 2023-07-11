@@ -382,10 +382,11 @@ inputTitle.addEventListener("mouseover", () => {
 });
 
 howToUse.addEventListener('click', () => {
-  setTimeout(() => {
-    howToEvent(1);
-    modalMask.classList = 'mask open';
-  }, 500);
+  const hamburgerMenu = document.getElementById('hamburgerMenu');
+  hamburgerMenu.style.zIndex = -10;
+  howToEvent(1);
+  modalMask.classList = 'mask open';
+  hamburgerMenu.style.zIndex = 1;
 });
 
 function howToModalOpen() {
