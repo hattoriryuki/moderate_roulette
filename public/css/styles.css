@@ -688,6 +688,12 @@ canvas {
   .delete-button:hover {
     color: #ef8686dd;
   }
+  .how-to-modal {
+    width: 95%;
+  }
+  .how-to-title {
+    font-size: 22px;
+  }
   .modal-content {
     top: 200px;
     width: 60%;
