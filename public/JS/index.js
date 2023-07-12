@@ -416,6 +416,7 @@ function howToEvent(num) {
   let thisTimeTitle;
   let thisTimeContent;
   let top;
+  let topPositionAry = [25, 30, 35, 35, 40];
   let right = 50;
 
   switch(true){
@@ -471,8 +472,14 @@ function howToEvent(num) {
   const buttonArea = document.createElement('div');
   const button = document.createElement('button');
   div.classList = 'how-to-use-modal';
-  div.style.top = `${top}%`;
-  div.style.right = `${right}%`;
+  if(mediaQuery.matches){
+    div.style.top = `${topPositionAry[num - 1]}%`;
+    div.style.right = '5%';
+    div.style.left = '5%';
+  } else{
+    div.style.top = `${top}%`;
+    div.style.right = `${right}%`;
+  }
   div.id = 'howToContent';
   triangle.classList = 'how-to-use-triangle';
   title.classList = 'how-to-use-title';

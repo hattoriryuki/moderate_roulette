@@ -400,6 +400,7 @@ canvas {
   border: 1px rgb(200, 198, 198) solid;
   border-radius: 8px;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .mask {
