@@ -14,6 +14,7 @@ let itemColor;
 let installPromptEvent;
 let data = [];
 const mediaQuery = window.matchMedia('(max-width: 768px)');
+const appLogo = document.getElementById('appLogo');
 const startButton = document.getElementById("startButton");
 const stopButton = document.getElementById("stopButton");
 const addButton = document.getElementById("addButton");
@@ -330,6 +331,10 @@ function openFlashMessage(word){
   }
 }
 
+appLogo.addEventListener('click', () => {
+  howToModalOpen();
+});
+
 startButton.addEventListener("click", () => {
   startButton.style.display = "none";
   stopButton.style.display = "block";
@@ -400,10 +405,11 @@ function howToModalOpen() {
     howToModalClose();
     modalMask.className = 'mask';
   });
-  howToOpen.addEventListener('click', () => {
+
+  howToOpen.onclick = () => {
     howToModalClose();
     howToEvent(1);
-  });
+  };
 
   function howToModalClose() {
     howToModal.style.zIndex = -1;
@@ -545,8 +551,7 @@ function howToEvent(num) {
   modalMask.onclick = () => howToCancelEvent();
 
   function howToEndEvent() {
-    const howToContent = document.getElementById('howToContent');
-    howToContent.remove();
+    div.remove();
     target.style.position = 'static';
     target.style.zIndex = 1;
   }
