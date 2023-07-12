@@ -416,7 +416,31 @@ function howToEvent(num) {
   let thisTimeTitle;
   let thisTimeContent;
   let top;
-  let topPositionAry = [25, 30, 35, 35, 40];
+  let positionAry = [{
+    arowTop: '160px',
+    arowRight: '30px',
+    top: '30%'
+  },
+  {
+    arowTop: '180px',
+    arowRight: '150px',
+    top: '34%'
+  },
+  {
+    arowTop: '135px',
+    arowRight: '20px',
+    top: '39%'
+  },
+  {
+    arowTop: '160px',
+    arowRight: '20px',
+    top: '36%'
+  },
+  {
+    arowTop: '-20px',
+    arowRight: '50px',
+    top: '40%'
+  }];
   let right = 50;
 
   switch(true){
@@ -472,16 +496,23 @@ function howToEvent(num) {
   const buttonArea = document.createElement('div');
   const button = document.createElement('button');
   div.classList = 'how-to-use-modal';
+  div.id = 'howToContent';
+  triangle.classList = 'how-to-use-triangle';
+
   if(mediaQuery.matches){
-    div.style.top = `${topPositionAry[num - 1]}%`;
+    div.style.top = positionAry[num - 1].top;
     div.style.right = '5%';
     div.style.left = '5%';
+    if(num === 5){
+      triangle.style.borderTop = '26px solid transparent';
+      triangle.style.borderBottom = '0px solid transparent';
+    }
+    triangle.style.top = positionAry[num - 1].arowTop;
+    triangle.style.right = positionAry[num - 1].arowRight;
   } else{
     div.style.top = `${top}%`;
     div.style.right = `${right}%`;
   }
-  div.id = 'howToContent';
-  triangle.classList = 'how-to-use-triangle';
   title.classList = 'how-to-use-title';
   title.innerHTML = thisTimeTitle;
   content.innerHTML = thisTimeContent;

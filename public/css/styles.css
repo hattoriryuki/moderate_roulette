@@ -705,6 +705,10 @@ canvas {
   .modal-content > p {
     font-size: small;
   }
+  .how-to-use-triangle {
+    border-top: 0px solid transparent;
+    border-bottom: 26px solid transparent;
+  }
   .terms-content {
     top: 40%;
     width: 90%;
