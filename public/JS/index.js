@@ -488,7 +488,11 @@ function howToEvent(num) {
       target = modalContent;
       target.style.display = 'block';
       startButton.style.display = 'block';
-      startButton.style.color = "rgb(185, 183, 183)";
+      if(data.length > 1){
+        startButton.style.color = '#67EB3C';
+      } else {
+        startButton.style.color = "rgb(185, 183, 183)";
+      }
       stopButton.style.display = 'none';
       thisTimeTitle = '5. 判定結果を確認します';
       thisTimeContent = 'Twitterマークで結果をシェアできますので、<br>拡散いただけますと幸いです';
