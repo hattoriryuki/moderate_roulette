@@ -9,10 +9,12 @@ let stopFlg = false;
 let addFlg = false;
 let itemCount = 0;
 let colorCount = 0;
+let howToPageNum = 1;
 let itemColor;
 let installPromptEvent;
 let data = [];
 const mediaQuery = window.matchMedia('(max-width: 768px)');
+const appLogo = document.getElementById('appLogo');
 const startButton = document.getElementById("startButton");
 const stopButton = document.getElementById("stopButton");
 const addButton = document.getElementById("addButton");
@@ -25,6 +27,7 @@ const termsButton = document.getElementById("termsButton");
 const inputTitle = document.getElementById("inputTitle");
 const inputItems = document.getElementById("inputItems");
 const installButton = document.getElementById("installButton");
+const howToUse = document.getElementById("howToUse");
 
 if(mediaQuery.matches){
   radius = 150;
@@ -53,7 +56,7 @@ if(isIos() && isSafari() && !isInStandaloneMode()) {
     iosPrompt.style.zIndex = 0;
   });
 }
-
+window.onload = setTimeout(howToModalOpen, 500);
 ctx.translate(canvas.width / 2, canvas.height / 2);
 
 drawRoullet(0);
@@ -274,15 +277,16 @@ function modalOpen(color, text){
   modalMask.className = "mask open";
   modalContent.style.zIndex = 2;
   modalContent.style.display = "block";
+  modalContent.style.position = 'absolute';
   modalMask.addEventListener("click", modalEndEvent);
   modalClose.addEventListener("click", modalEndEvent);
-  function modalEndEvent(){
-    modalMask.className = "mask";
-    modalContent.style.zIndex = -1;
-    modalContent.style.display = "none";
-    startButton.style.display = "block";
-    stopButton.style.display = "none";
-  }
+}
+function modalEndEvent(){
+  modalMask.className = "mask";
+  modalContent.style.zIndex = -1;
+  modalContent.style.display = "none";
+  startButton.style.display = "block";
+  stopButton.style.display = "none";
 }
 
 function itemAddEvent(){
@@ -327,6 +331,10 @@ function openFlashMessage(word){
     flashMessage.style.visibility = "hidden";
   }
 }
+
+appLogo.addEventListener('click', () => {
+  howToModalOpen();
+});
 
 startButton.addEventListener("click", () => {
   startButton.style.display = "none";
@@ -378,6 +386,205 @@ inputTitle.addEventListener("mouseover", () => {
   titleMessage.style = "margin: 0; padding: 0; color: gray; font-size: small;";
   inputTitle.addEventListener("mouseleave", () => titleMessage.innerHTML = "");
 });
+
+howToUse.addEventListener('click', () => {
+  const hamburgerMenu = document.getElementById('hamburgerMenu');
+  hamburgerMenu.style.zIndex = -10;
+  setTimeout(() => {
+    howToEvent(1);
+  }, 500);
+  modalMask.classList = 'mask open';
+  hamburgerMenu.style.zIndex = 1;
+});
+
+function howToModalOpen() {
+  const howToModal = document.getElementById("howToModal");
+  const howToClose = document.getElementById("howToClose");
+  const howToOpen = document.getElementById("howToOpen");
+  howToModal.style.zIndex = 10;
+  howToModal.style.display = 'block';
+  modalMask.className = 'mask open';
+  howToClose.addEventListener('click', () => {
+    howToModalClose();
+    modalMask.className = 'mask';
+  });
+
+  howToOpen.onclick = () => {
+    howToModalClose();
+    setTimeout(() => {
+      howToEvent(1);
+    }, 500);
+  };
+
+  function howToModalClose() {
+    howToModal.style.zIndex = -1;
+    howToModal.style.display = 'none';
+  }
+}
+
+function howToEvent(num) {
+  let target;
+  let thisTimeTitle;
+  let thisTimeContent;
+  let top;
+  let right;
+  let left;
+  let positionAry = [{
+    arowTop: '160px',
+    arowRight: '30px',
+    top: '-200px'
+  },
+  {
+    arowTop: '180px',
+    arowRight: '140px',
+    top: '-150px'
+  },
+  {
+    arowTop: '160px',
+    arowRight: '18px',
+    top: '-130px'
+  },
+  {
+    arowTop: '160px',
+    arowRight: '18px',
+    top: '-130px'
+  },
+  {
+    arowTop: '-20px',
+    arowRight: '50px',
+    top: '-100px'
+  }];
+
+  switch(true){
+    case num === 1:
+      target = inputTitle;
+      thisTimeTitle = '1. タイトルを入力する（任意です）';
+      thisTimeContent = 'ルーレットで決めたいテーマを入力してください<br>（例）今日の夜ご飯';
+      top = '-40px';
+      left = '-420px';
+      break;
+    case num === 2:
+      target = inputText;
+      thisTimeTitle = '2. アイテムを入力する';
+      thisTimeContent = 'ルーレットで決めたい候補を複数入力してください<br>※Enterキーでアイテムを登録できます<br>（例）マクドナルド';
+      top = '10px';
+      left = '-420px';
+      break;
+    case num === 3:
+      target = startButton;
+      target.style.color = '#67EB3C';
+      thisTimeTitle = '3. スタートボタンを押す';
+      thisTimeContent = 'アイテムが２個以上登録されると<br>スタートボタンがアクティブ(緑色)になります';
+      right = '70px';
+      break;
+    case num === 4:
+      target = stopButton;
+      target.style.display = 'block';
+      startButton.style.display = 'none';
+      thisTimeTitle = '4. ストップボタンを押す';
+      thisTimeContent = '任意のタイミングで押すとルーレットの回転が止まり、<br>判定結果が表示されます';
+      right = '70px';
+      break;
+    case num === 5:
+      target = modalContent;
+      target.style.display = 'block';
+      startButton.style.display = 'block';
+      if(data.length > 1){
+        startButton.style.color = '#67EB3C';
+      } else {
+        startButton.style.color = "rgb(185, 183, 183)";
+      }
+      stopButton.style.display = 'none';
+      thisTimeTitle = '5. 判定結果を確認します';
+      thisTimeContent = 'Twitterマークで結果をシェアできますので、<br>拡散いただけますと幸いです';
+      top = '90px';
+      left = '-660px';
+      break;
+    case num === 6:
+      modalEndEvent();
+      howToPageNum = 1;
+      return;
+    default:
+      break;
+  }
+  const div = document.createElement('div');
+  const triangle = document.createElement('div');
+  const title = document.createElement('div');
+  const content = document.createElement('div');
+  const buttonArea = document.createElement('div');
+  const button = document.createElement('button');
+  div.classList = 'how-to-use-modal';
+  div.id = 'howToContent';
+  triangle.classList = 'how-to-use-triangle';
+
+  if(mediaQuery.matches){
+    div.style.top = positionAry[num - 1].top;
+    div.style.right = '0';
+    div.style.left = '0';
+    if(num === 5){
+      triangle.style.borderTop = '26px solid transparent';
+      triangle.style.borderBottom = '0 solid transparent';
+    } else if(num === 3 || num === 4){
+      triangle.style.borderLeft = '0 solid transparent';
+      triangle.style.borderRight = '20px solid white';
+    }
+    triangle.style.top = positionAry[num - 1].arowTop;
+    triangle.style.right = positionAry[num - 1].arowRight;
+  } else{
+    div.style.top = top;
+    div.style.right = right;
+    div.style.left = left;
+  }
+  title.classList = 'how-to-use-title';
+  title.innerHTML = thisTimeTitle;
+  content.innerHTML = thisTimeContent;
+  buttonArea.classList = 'how-to-use-button-area';
+  button.classList = 'how-to-use-button';
+  button.innerHTML = '次へ';
+  if(num === 5) button.innerHTML = '終了';
+  button.id = 'howToNextButton';
+
+  div.appendChild(triangle);
+  div.appendChild(title);
+  div.appendChild(content);
+  buttonArea.appendChild(button);
+  div.appendChild(buttonArea);
+  inputArea.prepend(div);
+
+  target.style.position = 'relative';
+  target.style.zIndex = 99; 
+  if(num === 5){
+    target.style.position = 'absolute';
+    modalOpen('red', 'Test');
+  }
+  
+  const howToNextButton = document.getElementById('howToNextButton');
+  howToNextButton.addEventListener('click', () => {
+    howToEndEvent();
+    howToPageNum++;
+    howToEvent(howToPageNum);
+  });
+  modalMask.onclick = () => howToCancelEvent();
+
+  function howToEndEvent() {
+    div.remove();
+    target.style.position = 'static';
+    target.style.zIndex = 1;
+  }
+
+  function howToCancelEvent() {
+    howToEndEvent();
+    if(num === 3 || num === 4){
+      stopButton.style.display = 'none';
+      startButton.style.color = 'rgb(185, 183, 183)';
+      startButton.style.display = 'block';
+    } else if(num === 5){
+      target.style.position = 'absolute';
+    }
+    modalMask.classList = 'mask';
+    howToPageNum = 1;
+  }
+}
 
 window.addEventListener('beforeinstallprompt', function(event) {
   event.preventDefault();
