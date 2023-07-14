@@ -168,6 +168,7 @@ canvas {
 
 .input-area {
   width: 100%;
+  position: relative;
 }
 
 .input-title {

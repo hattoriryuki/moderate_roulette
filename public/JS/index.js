@@ -426,32 +426,32 @@ function howToEvent(num) {
   let thisTimeTitle;
   let thisTimeContent;
   let top;
+  let right = 50;
   let positionAry = [{
     arowTop: '160px',
     arowRight: '30px',
-    top: '30%'
+    top: '-200px'
   },
   {
     arowTop: '180px',
-    arowRight: '150px',
-    top: '34%'
-  },
-  {
-    arowTop: '135px',
-    arowRight: '20px',
-    top: '39%'
+    arowRight: '140px',
+    top: '-150px'
   },
   {
     arowTop: '160px',
-    arowRight: '20px',
-    top: '36%'
+    arowRight: '18px',
+    top: '-130px'
+  },
+  {
+    arowTop: '160px',
+    arowRight: '18px',
+    top: '-130px'
   },
   {
     arowTop: '-20px',
     arowRight: '50px',
-    top: '40%'
+    top: '-100px'
   }];
-  let right = 50;
 
   switch(true){
     case num === 1:
@@ -511,11 +511,14 @@ function howToEvent(num) {
 
   if(mediaQuery.matches){
     div.style.top = positionAry[num - 1].top;
-    div.style.right = '5%';
-    div.style.left = '5%';
+    div.style.right = '0';
+    div.style.left = '0';
     if(num === 5){
       triangle.style.borderTop = '26px solid transparent';
-      triangle.style.borderBottom = '0px solid transparent';
+      triangle.style.borderBottom = '0 solid transparent';
+    } else if(num === 3 || num === 4){
+      triangle.style.borderLeft = '0 solid transparent';
+      triangle.style.borderRight = '20px solid white';
     }
     triangle.style.top = positionAry[num - 1].arowTop;
     triangle.style.right = positionAry[num - 1].arowRight;
