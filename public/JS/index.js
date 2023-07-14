@@ -277,6 +277,7 @@ function modalOpen(color, text){
   modalMask.className = "mask open";
   modalContent.style.zIndex = 2;
   modalContent.style.display = "block";
+  modalContent.style.position = 'absolute';
   modalMask.addEventListener("click", modalEndEvent);
   modalClose.addEventListener("click", modalEndEvent);
 }
