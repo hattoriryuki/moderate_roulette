@@ -426,7 +426,8 @@ function howToEvent(num) {
   let thisTimeTitle;
   let thisTimeContent;
   let top;
-  let right = 50;
+  let right;
+  let left;
   let positionAry = [{
     arowTop: '160px',
     arowRight: '30px',
@@ -458,20 +459,22 @@ function howToEvent(num) {
       target = inputTitle;
       thisTimeTitle = '1. タイトルを入力する（任意です）';
       thisTimeContent = 'ルーレットで決めたいテーマを入力してください<br>（例）今日の夜ご飯';
-      top = 10;
+      top = '-40px';
+      left = '-420px';
       break;
     case num === 2:
       target = inputText;
       thisTimeTitle = '2. アイテムを入力する';
       thisTimeContent = 'ルーレットで決めたい候補を複数入力してください<br>※Enterキーでアイテムを登録できます<br>（例）マクドナルド';
-      top = 18;
+      top = '10px';
+      left = '-420px';
       break;
     case num === 3:
       target = startButton;
       target.style.color = '#67EB3C';
       thisTimeTitle = '3. スタートボタンを押す';
       thisTimeContent = 'アイテムが２個以上登録されると<br>スタートボタンがアクティブ(緑色)になります';
-      right = 11;
+      right = '70px';
       break;
     case num === 4:
       target = stopButton;
@@ -479,7 +482,7 @@ function howToEvent(num) {
       startButton.style.display = 'none';
       thisTimeTitle = '4. ストップボタンを押す';
       thisTimeContent = '任意のタイミングで押すとルーレットの回転が止まり、<br>判定結果が表示されます';
-      right = 11;
+      right = '70px';
       break;
     case num === 5:
       target = modalContent;
@@ -489,8 +492,8 @@ function howToEvent(num) {
       stopButton.style.display = 'none';
       thisTimeTitle = '5. 判定結果を確認します';
       thisTimeContent = 'Twitterマークで結果をシェアできますので、<br>拡散いただけますと幸いです';
-      top = 40;
-      right = 68;
+      top = '90px';
+      left = '-660px';
       break;
     case num === 6:
       modalEndEvent();
@@ -523,8 +526,9 @@ function howToEvent(num) {
     triangle.style.top = positionAry[num - 1].arowTop;
     triangle.style.right = positionAry[num - 1].arowRight;
   } else{
-    div.style.top = `${top}%`;
-    div.style.right = `${right}%`;
+    div.style.top = top;
+    div.style.right = right;
+    div.style.left = left;
   }
   title.classList = 'how-to-use-title';
   title.innerHTML = thisTimeTitle;
