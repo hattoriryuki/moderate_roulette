@@ -334,6 +334,9 @@ function openFlashMessage(word){
 
 appLogo.addEventListener('click', () => {
   howToModalOpen();
+  modalMask.onclick = () => {
+    
+  }
 });
 
 startButton.addEventListener("click", () => {
@@ -405,6 +408,12 @@ function howToModalOpen() {
   howToModal.style.display = 'block';
   modalMask.className = 'mask open';
   howToClose.addEventListener('click', () => {
+    howToModalClose();
+    modalMask.className = 'mask';
+  });
+
+
+  modalMask.addEventListener('click', () => {
     howToModalClose();
     modalMask.className = 'mask';
   });
