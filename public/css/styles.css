@@ -180,6 +180,7 @@ canvas {
   border-bottom: 1px solid;
   font-size: medium;
   margin-top: 16px;
+  background: none;
 }
 
 .title-message {
@@ -212,6 +213,7 @@ canvas {
   border: none;
   border-bottom: 1px solid;
   font-size: medium;
+  background: none;
 }
 
 .add-button {
@@ -702,6 +704,7 @@ canvas {
   .modal-content {
     top: 200px;
     width: 60%;
+    height: 180px;
   }
   .result-text {
     font-size: small;

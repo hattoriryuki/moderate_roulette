@@ -334,6 +334,9 @@ function openFlashMessage(word){
 
 appLogo.addEventListener('click', () => {
   howToModalOpen();
+  modalMask.onclick = () => {
+    
+  }
 });
 
 startButton.addEventListener("click", () => {
@@ -409,6 +412,12 @@ function howToModalOpen() {
     modalMask.className = 'mask';
   });
 
+
+  modalMask.addEventListener('click', () => {
+    howToModalClose();
+    modalMask.className = 'mask';
+  });
+
   howToOpen.onclick = () => {
     howToModalClose();
     setTimeout(() => {
@@ -462,6 +471,7 @@ function howToEvent(num) {
       thisTimeContent = 'ルーレットで決めたいテーマを入力してください<br>（例）今日の夜ご飯';
       top = '-40px';
       left = '-420px';
+      target.style.backgroundColor = 'white';
       break;
     case num === 2:
       target = inputText;
@@ -469,6 +479,7 @@ function howToEvent(num) {
       thisTimeContent = 'ルーレットで決めたい候補を複数入力してください<br>※Enterキーでアイテムを登録できます<br>（例）マクドナルド';
       top = '10px';
       left = '-420px';
+      target.style.backgroundColor = 'white';
       break;
     case num === 3:
       target = startButton;
@@ -570,6 +581,10 @@ function howToEvent(num) {
     div.remove();
     target.style.position = 'static';
     target.style.zIndex = 1;
+    if(num === 1 || num === 2){
+      target.style.backgroud = 'none';
+      target.style.backgroundColor = '';
+    }
   }
 
   function howToCancelEvent() {
