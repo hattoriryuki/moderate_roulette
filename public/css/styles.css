@@ -704,6 +704,7 @@ canvas {
   .modal-content {
     top: 200px;
     width: 60%;
+    height: 180px;
   }
   .result-text {
     font-size: small;
